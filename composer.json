@@ -1,0 +1,34 @@
+{
+    "name": "cruxoft/bolt-api",
+    "description": "RESTful API module for Bolt",
+    "keywords": [
+        "bolt",
+        "rest",
+        "api"
+    ],
+    "type": "library",
+    "authors": [
+        {
+            "name": "Steve Adams"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+	"cruxoft/bolt-core": "dev-develop"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*"
+    },
+    "suggest": {},
+    "autoload": {
+        "psr-4": {
+            "Bolt\\": "src/Bolt"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/irwtdvoys/bolt-core"
+        }
+    ]
+}
