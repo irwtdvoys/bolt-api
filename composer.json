@@ -1,6 +1,7 @@
 {
     "name": "cruxoft/bolt-api",
     "description": "RESTful API module for Bolt",
+    "license": "Apache-2.0",
     "keywords": [
         "bolt",
         "rest",
@@ -9,12 +10,13 @@
     "type": "library",
     "authors": [
         {
-            "name": "Steve Adams"
+            "name": "Steve Adams",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.6",
-	    "cruxoft/bolt-core": "v0.1.0"
+	    "cruxoft/bolt-core": "v0.1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"

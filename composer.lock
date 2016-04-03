@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "46fa092992bb10ce2fafeb328717a1b2",
-    "content-hash": "dacef347b24386adaee17fda3700766d",
+    "hash": "fe29ea8867312f62426bfd57d73b2788",
+    "content-hash": "ef33727ec52bb536c08da7a8ba322213",
     "packages": [
         {
             "name": "cruxoft/bolt-core",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-core.git",
-                "reference": "9e8b4c1040cbb1b3a3ee97739078c7b5988373d7"
+                "reference": "ad761a3c512dfdf526bd310612ca1ae16d11d77e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/9e8b4c1040cbb1b3a3ee97739078c7b5988373d7",
-                "reference": "9e8b4c1040cbb1b3a3ee97739078c7b5988373d7",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/ad761a3c512dfdf526bd310612ca1ae16d11d77e",
+                "reference": "ad761a3c512dfdf526bd310612ca1ae16d11d77e",
                 "shasum": ""
             },
             "require": {
@@ -34,16 +34,20 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
             "authors": [
                 {
-                    "name": "Steve Adams"
+                    "name": "Steve Adams",
+                    "role": "Developer"
                 }
             ],
-            "description": "PHP Framework",
+            "description": "Core elements for the Bolt Framework",
             "keywords": [
                 "framework"
             ],
-            "time": "2016-04-03 19:39:49"
+            "time": "2016-04-03 21:29:10"
         }
     ],
     "packages-dev": [
