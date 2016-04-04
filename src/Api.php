@@ -171,7 +171,7 @@
 		{
 			if ($this->route->controller != "" && $_SERVER['REQUEST_METHOD'] != "OPTIONS")
 			{
-				$controller = "\\Controllers\\" . $this->route->controller;
+				$controller = "App\\Controllers\\" . $this->route->controller;
 
 				if (!class_exists($controller))
 				{
