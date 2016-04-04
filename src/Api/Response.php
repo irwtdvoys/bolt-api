@@ -104,7 +104,7 @@
 
 		public function setView($format)
 		{
-			$viewName = "\\Views\\" . ucfirst($format);
+			$viewName = "\\Bolt\\Views\\" . ucfirst($format);
 
 			if (class_exists($viewName))
 			{
