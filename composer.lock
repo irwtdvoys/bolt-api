@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fe29ea8867312f62426bfd57d73b2788",
-    "content-hash": "ef33727ec52bb536c08da7a8ba322213",
+    "hash": "e03f9c6e462ad8369edec6524ffcb98b",
+    "content-hash": "0dd4aacccadc4289c29f189db787f4a9",
     "packages": [
         {
             "name": "cruxoft/bolt-core",
-            "version": "v0.1.1",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-core.git",
-                "reference": "ad761a3c512dfdf526bd310612ca1ae16d11d77e"
+                "reference": "a101b443e49a6e26f7207a234f8af72877e79272"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/ad761a3c512dfdf526bd310612ca1ae16d11d77e",
-                "reference": "ad761a3c512dfdf526bd310612ca1ae16d11d77e",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/a101b443e49a6e26f7207a234f8af72877e79272",
+                "reference": "a101b443e49a6e26f7207a234f8af72877e79272",
                 "shasum": ""
             },
             "require": {
@@ -30,7 +30,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bolt\\": "src/Bolt/"
+                    "Bolt\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -45,9 +45,52 @@
             ],
             "description": "Core elements for the Bolt Framework",
             "keywords": [
+                "bolt",
                 "framework"
             ],
-            "time": "2016-04-03 21:29:10"
+            "time": "2016-04-04 10:19:32"
+        },
+        {
+            "name": "cruxoft/bolt-mvc",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/irwtdvoys/bolt-mvc.git",
+                "reference": "96ac4fdd200aeb16e0858d320ed60dc72eba745b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/96ac4fdd200aeb16e0858d320ed60dc72eba745b",
+                "reference": "96ac4fdd200aeb16e0858d320ed60dc72eba745b",
+                "shasum": ""
+            },
+            "require": {
+                "cruxoft/bolt-core": "v0.1.*",
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bolt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Steve Adams",
+                    "role": "Developer"
+                }
+            ],
+            "description": "MVC module for Bolt",
+            "keywords": [
+                "bolt",
+                "mvc",
+                "php"
+            ],
+            "time": "2016-04-04 10:37:08"
         }
     ],
     "packages-dev": [
