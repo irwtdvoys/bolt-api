@@ -22,39 +22,39 @@
 			}
 		}
 
-        private function parseUrl()
-        {
-            $uri = !empty($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['REQUEST_URI'];
+		private function parseUrl()
+		{
+			$uri = !empty($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['REQUEST_URI'];
 
-            $adjustedRoot = (strpos($uri, "/latest") === 0) ? str_replace(VERSION_INTERNAL_API, "latest", ROOT_API): ROOT_API;
-            $fullRequestPath = \Bolt\Strings::replaceOverlap($adjustedRoot, $uri);
-            $path = str_replace($adjustedRoot, "", $fullRequestPath);
+			$adjustedRoot = (strpos($uri, "/latest") === 0) ? str_replace(VERSION_INTERNAL_API, "latest", ROOT_API): ROOT_API;
+			$fullRequestPath = \Bolt\Strings::replaceOverlap($adjustedRoot, $uri);
+			$path = str_replace($adjustedRoot, "", $fullRequestPath);
 
-            $bits = explode("/", $path);
+			$bits = explode("/", $path);
 
-            for ($loop = 0; $loop < count($bits); $loop++)
-            {
-                $bit = $bits[$loop];
+			for ($loop = 0; $loop < count($bits); $loop++)
+			{
+				$bit = $bits[$loop];
 
-                if ($bit == "")
-                {
-                    unset($bits[$loop]);
-                }
-            }
+				if ($bit == "")
+				{
+					unset($bits[$loop]);
+				}
+			}
 
-            $path = implode("/", $bits);
-            $divider = strpos($path, "?");
+			$path = implode("/", $bits);
+			$divider = strpos($path, "?");
 
-            if ($divider === false)
-            {
-                $info['baseUrl'] = $path;
-            }
-            else
-            {
-                list($info['baseUrl'], $info['queryString']) = explode("?", $path);
-            }
+			if ($divider === false)
+			{
+				$info['baseUrl'] = $path;
+			}
+			else
+			{
+				list($info['baseUrl'], $info['queryString']) = explode("?", $path);
+			}
 
-            return $info['baseUrl'];
-        }
+			return $info['baseUrl'];
+		}
 	}
 ?>

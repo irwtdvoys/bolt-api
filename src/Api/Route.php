@@ -5,7 +5,7 @@
 	{
 		private $rules;
 
-        public $info;
+		public $info;
 
 		public $controller;
 		public $method;
