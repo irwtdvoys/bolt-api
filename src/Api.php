@@ -133,7 +133,7 @@
 
 			foreach ($possibleMethods as $next)
 			{
-				if (method_exists("\\Controllers\\" . $this->route->controller, strtolower($next) . $methodTail) === true)
+				if (method_exists("\\App\\Controllers\\" . $this->route->controller, strtolower($next) . $methodTail) === true)
 				{
 					$available[] = $next;
 				}
