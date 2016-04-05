@@ -63,6 +63,13 @@
 				case "application/json":
 					$body_params = json_decode($body);
 
+					$error = json_last_error();
+
+					if ($error !== JSON_ERROR_NONE)
+					{
+						throw new \Exception("Error decoding JSON", $error);
+					}
+
 					if ($body_params)
 					{
 						foreach($body_params as $param_name => $param_value)
