@@ -59,7 +59,7 @@
 
 		public function parse()
 		{
-            $this->headers = array_change_key_case(apache_request_headers(), CASE_LOWER);
+            $this->headers = array_change_key_case($this->fetchHeaders(), CASE_LOWER);
 		}
 	}
 ?>
