@@ -1,7 +1,9 @@
 <?php
 	namespace Bolt\Api\Request;
 
-	class Headers extends \Bolt\Base
+	use Bolt\Base;
+
+	class Headers extends Base
 	{
 		private $headers;
 
