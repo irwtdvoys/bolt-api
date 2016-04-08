@@ -11,9 +11,9 @@
 		{
 		}
 
-		public function authenticate($raw)
+		public function authenticate($parameters)
 		{
-			$data = base64_decode(str_replace("Basic ", "", $raw));
+			$data = base64_decode($parameters->token);
 
 			list($username, $password) = explode(":", $data, 2);
 

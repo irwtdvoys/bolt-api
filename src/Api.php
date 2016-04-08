@@ -222,7 +222,7 @@
 
 			$authHandler = new $available->{$this->auth->scheme()}($this->connections->dbo());
 
-			return $authHandler->authenticate($this->request->headers->authorization());
+			return $authHandler->authenticate($this->auth->parameters());
 		}
 	}
 ?>
