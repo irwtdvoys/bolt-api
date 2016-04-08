@@ -55,8 +55,8 @@
 				// allow aliasing logged in user id as 'me'
 				if ($this->route->info->id == "me")
 				{
-					global $_USERID;
-					$this->route->info->id = $_USERID;
+					global $_ID;
+					$this->route->info->id = $_ID;
 				}
 
 				if ($this->auth->scheme() == "Global")
