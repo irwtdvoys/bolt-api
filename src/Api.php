@@ -28,6 +28,10 @@
 			}
 
 			$this->route = new Api\Route(true);
+		}
+
+		public function activate()
+		{
 			$this->routing();
 
 			if ($this->route->info->verb == "OPTIONS")
