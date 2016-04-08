@@ -43,7 +43,14 @@
 
 			if ($this->checkWhitelist() === false)
 			{
-				$this->authenticate();
+				try
+				{
+					$this->authenticate();
+				}
+				catch (\Exception $e)
+				{
+					$this->response->status($e->getCode());
+				}
 
 				// allow aliasing logged in user id as 'me'
 				if ($this->route->info->id == "me")
