@@ -13,6 +13,8 @@
 			$response = new Api\Response();
 			$className = get_class($exception);
 
+			error_log($exception->getMessage());
+
 			if (DEPLOYMENT == "production")
 			{
 				$data = $className;
