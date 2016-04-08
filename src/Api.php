@@ -220,7 +220,7 @@
 				"Basic" => "\\Bolt\\Api\\Authentication\\Basic"
 			);
 
-			$authHandler = new $available->{$this->auth->scheme()}($this->connections->dbo());
+			$authHandler = new $available->{$this->auth->scheme()}($this->connections);
 
 			return $authHandler->authenticate($this->auth->parameters());
 		}

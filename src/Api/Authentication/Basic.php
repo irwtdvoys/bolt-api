@@ -1,13 +1,13 @@
 <?php
 	namespace Bolt\Api\Authentication;
 
+	use Bolt\Api\Connections;
 	use Bolt\Base;
 	use Bolt\Interfaces\Authentication;
-	use Bolt\Interfaces\Connection;
 
 	class Basic extends Base implements Authentication
 	{
-		public function __construct(Connection $connection = null)
+		public function __construct(Connections $connection = null)
 		{
 		}
 
