@@ -210,10 +210,11 @@
 			$this->auth->parse($this->request->headers->authorization());
 
 			$available = (object)array(
-				"Basic" => "\\Bolt\\Api\\Authorization\\Basic"
+				"Basic" => "\\Bolt\\Api\\Authentication\\Basic"
 			);
 
 			$authHandler = new $available->{$this->auth->scheme()}($this->connections->dbo());
+
 			return $authHandler->authenticate($this->request->headers->authorization());
 		}
 	}
