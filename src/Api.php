@@ -209,78 +209,12 @@
 
 			$this->auth->parse($this->request->headers->authorization());
 
-			switch ($this->auth->scheme())
-			{
-				case "Global":
-					$result = $this->globalAuth();
-					break;
-				case "Local":
-				default: // Backwards compatibility
-					$result = $this->localAuth();
-					break;
-			}
-
-			return $result;
-		}
-
-		public function globalAuth()
-		{
-			global $_USERID;
-			$url = ROOT_AUTH . "authentication/";
-
-			$headers = array(
-				"Api-Code: " . API_NAME
+			$available = (object)array(
+				"Basic" => "\\Bolt\\Api\\Authorization\\Basic"
 			);
 
-			$headers[] = "Authorization: " . str_replace("Global ", "", $this->request->headers->authorization());
-
-			$options = array(
-				CURLOPT_URL => $url,
-				CURLOPT_CUSTOMREQUEST => "GET",
-				CURLOPT_RETURNTRANSFER => 1,
-				CURLOPT_CONNECTTIMEOUT => 5,
-				CURLOPT_HTTPHEADER => $headers
-			);
-
-			$curl = new Curl();
-			$result = $curl->fetch($options);
-
-			if ($result->code < 300)
-			{
-				$this->permissions = $result->body->permissions;
-
-				$_USERID = $result->body->userId;
-
-				return true;
-			}
-			else
-			{
-				$this->response->status($result->code);
-			}
-		}
-
-		public function localAuth()
-		{
-			global $_USERID;
-
-			$token = new \Models\Dbo\Token($this->dbo);
-			$token->id($this->auth->token());
-			$result = $token->load();
-
-			if ($result === false)
-			{
-				$this->response->status(401);
-			}
-
-			$valid = $token->validate();
-
-			if ($valid === false)
-			{
-				$this->response->status(419);
-			}
-
-			$_USERID = $token->userId();
-			return true;
+			$authHandler = new $available->{$this->auth->scheme()}($this->connections->dbo());
+			return $authHandler->authenticate($this->request->headers->authorization());
 		}
 	}
 ?>
