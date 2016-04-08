@@ -47,9 +47,9 @@
 				{
 					$this->authenticate();
 				}
-				catch (\Exception $e)
+				catch (Exceptions\Authentication $exception)
 				{
-					$this->response->status($e->getCode());
+					$this->response->status($exception->getCode());
 				}
 
 				// allow aliasing logged in user id as 'me'

@@ -19,7 +19,7 @@
 
 			if ($username !== AUTH_USERNAME || $password !== AUTH_PASSWORD)
 			{
-				throw new \Exception("", 401);
+				throw new \Bolt\Exceptions\Authentication(401);
 			}
 
 			return true;
