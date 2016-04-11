@@ -214,9 +214,7 @@
 
 			$this->auth->parse($this->request->headers->authorization());
 
-			$available = (object)array(
-				"Basic" => "\\Bolt\\Api\\Authentication\\Basic"
-			);
+			$available = $this->auth->schemas();
 
 			$authHandler = new $available->{$this->auth->scheme()}($this->connections);
 
