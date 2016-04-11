@@ -5,10 +5,9 @@
 	{
 		public $request;
 		public $response;
-		public $auth;
 
+		public $authentication;
 		public $connections;
-
 		public $route;
 
 		private $permissions;
@@ -16,18 +15,21 @@
 
 		public function __construct($connections = null)
 		{
-			$this->connections = new Api\Connections($connections);
-
 			$this->response = new Api\Response();
 			$this->request = new Api\Request();
-			$this->auth = new Api\Authorization();
+
+			$this->authentication = new Api\Authentication();
+			$this->connections = new Api\Connections($connections);
+			$this->route = new Api\Route(true);
 
 			if ($this->request->format != "json")
 			{
 				$this->response->setView($this->request->format);
 			}
+		}
 
-			$this->route = new Api\Route(true);
+		public function activate()
+		{
 			$this->routing();
 
 			if ($this->route->info->verb == "OPTIONS")
@@ -39,16 +41,23 @@
 
 			if ($this->checkWhitelist() === false)
 			{
-				$this->authenticate();
+				try
+				{
+					$this->authenticate();
+				}
+				catch (Exceptions\Authentication $exception)
+				{
+					$this->response->status($exception->getCode());
+				}
 
 				// allow aliasing logged in user id as 'me'
 				if ($this->route->info->id == "me")
 				{
-					global $_USERID;
-					$this->route->info->id = $_USERID;
+					global $_ID;
+					$this->route->info->id = $_ID;
 				}
 
-				if ($this->auth->scheme() == "Global")
+				if ($this->authentication->scheme() == "Global")
 				{
 					$this->enforcePermission($this->route->controller, $this->route->method);
 				}
@@ -205,78 +214,11 @@
 
 			$this->auth->parse($this->request->headers->authorization());
 
-			switch ($this->auth->scheme())
-			{
-				case "Global":
-					$result = $this->globalAuth();
-					break;
-				case "Local":
-				default: // Backwards compatibility
-					$result = $this->localAuth();
-					break;
-			}
+			$available = $this->auth->schemas();
 
-			return $result;
-		}
+			$authHandler = new $available->{$this->auth->scheme()}($this->connections);
 
-		public function globalAuth()
-		{
-			global $_USERID;
-			$url = ROOT_AUTH . "authentication/";
-
-			$headers = array(
-				"Api-Code: " . API_NAME
-			);
-
-			$headers[] = "Authorization: " . str_replace("Global ", "", $this->request->headers->authorization());
-
-			$options = array(
-				CURLOPT_URL => $url,
-				CURLOPT_CUSTOMREQUEST => "GET",
-				CURLOPT_RETURNTRANSFER => 1,
-				CURLOPT_CONNECTTIMEOUT => 5,
-				CURLOPT_HTTPHEADER => $headers
-			);
-
-			$curl = new Curl();
-			$result = $curl->fetch($options);
-
-			if ($result->code < 300)
-			{
-				$this->permissions = $result->body->permissions;
-
-				$_USERID = $result->body->userId;
-
-				return true;
-			}
-			else
-			{
-				$this->response->status($result->code);
-			}
-		}
-
-		public function localAuth()
-		{
-			global $_USERID;
-
-			$token = new \Models\Dbo\Token($this->dbo);
-			$token->id($this->auth->token());
-			$result = $token->load();
-
-			if ($result === false)
-			{
-				$this->response->status(401);
-			}
-
-			$valid = $token->validate();
-
-			if ($valid === false)
-			{
-				$this->response->status(419);
-			}
-
-			$_USERID = $token->userId();
-			return true;
+			return $authHandler->authenticate($this->auth->parameters());
 		}
 	}
 ?>
