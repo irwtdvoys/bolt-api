@@ -1,20 +1,28 @@
 <?php
 	namespace Bolt\Api;
 
-	class Authorization extends \Bolt\Base
+	use Bolt\Base;
+
+	class Authentication extends Base
 	{
+		public $schemas;
+
 		public $scheme;
 		public $parameters;
+
+		public function __construct()
+		{
+			$this->schemas = new \stdClass();
+		}
+
+		public function add($schema, $class)
+		{
+			$this->schemas->{$schema} = $class;
+		}
 
 		public function parse($header)
 		{
 			list($scheme, $data) = explode(" ", $header, 2);
-
-			if ($scheme == $header)
-			{
-				$scheme = "Local";
-				$data = $header;
-			}
 
 			$parameters = explode(",", $data);
 			$results = array();
