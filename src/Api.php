@@ -5,10 +5,9 @@
 	{
 		public $request;
 		public $response;
-		public $auth;
 
+		public $authentication;
 		public $connections;
-
 		public $route;
 
 		private $permissions;
@@ -16,18 +15,17 @@
 
 		public function __construct($connections = null)
 		{
-			$this->connections = new Api\Connections($connections);
-
 			$this->response = new Api\Response();
 			$this->request = new Api\Request();
-			$this->auth = new Api\Authorization();
+
+			$this->authentication = new Api\Authentication();
+			$this->connections = new Api\Connections($connections);
+			$this->route = new Api\Route(true);
 
 			if ($this->request->format != "json")
 			{
 				$this->response->setView($this->request->format);
 			}
-
-			$this->route = new Api\Route(true);
 		}
 
 		public function activate()
@@ -59,7 +57,7 @@
 					$this->route->info->id = $_ID;
 				}
 
-				if ($this->auth->scheme() == "Global")
+				if ($this->authentication->scheme() == "Global")
 				{
 					$this->enforcePermission($this->route->controller, $this->route->method);
 				}
