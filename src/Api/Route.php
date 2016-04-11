@@ -1,7 +1,10 @@
 <?php
 	namespace Bolt\Api;
 
-	class Route extends \Bolt\Base
+	use Bolt\Base;
+	use Bolt\Files;
+
+	class Route extends Base
 	{
 		private $rules;
 
@@ -42,7 +45,7 @@
 
 		private function loadRules()
 		{
-			$fileHandler = new \Bolt\Files();
+			$fileHandler = new Files();
 
 			$config = json_decode($fileHandler->load(ROOT_SERVER . "/library/routes.json"));
 
