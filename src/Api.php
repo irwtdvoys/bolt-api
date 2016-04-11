@@ -212,13 +212,13 @@
 				$this->response->status(401);
 			}
 
-			$this->auth->parse($this->request->headers->authorization());
+			$this->authentication->parse($this->request->headers->authorization());
 
-			$available = $this->auth->schemas();
+			$available = $this->authentication->schemas();
 
-			$authHandler = new $available->{$this->auth->scheme()}($this->connections);
+			$authHandler = new $available->{$this->authentication->scheme()}($this->connections);
 
-			return $authHandler->authenticate($this->auth->parameters());
+			return $authHandler->authenticate($this->authentication->parameters());
 		}
 	}
 ?>
