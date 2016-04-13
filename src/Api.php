@@ -216,7 +216,14 @@
 
 			$available = $this->authentication->schemas();
 
-			$authHandler = new $available->{$this->authentication->scheme()}($this->connections);
+			$authClass = $available->{$this->authentication->scheme()};
+
+			if (!class_exists($authClass))
+			{
+				$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
+			}
+
+			$authHandler = new $authClass($this->connections);
 
 			return $authHandler->authenticate($this->authentication->parameters());
 		}
