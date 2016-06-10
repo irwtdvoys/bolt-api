@@ -27,7 +27,7 @@
 			{
 				if ($this->request[$key] !== null)
 				{
-					if ($info->$key === null)
+					if ($info->$key === null || $info->$key === "")
 					{
 						return false;
 					}
