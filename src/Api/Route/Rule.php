@@ -1,7 +1,10 @@
 <?php
 	namespace Bolt\Api\Route;
 
-	class Rule extends \Bolt\Base
+	use Bolt\Base;
+	use Bolt\Strings;
+
+	class Rule extends Base
 	{
 		public $request;
 		public $route;
@@ -32,7 +35,7 @@
 						return false;
 					}
 
-					if (\Bolt\Strings::isRegex($this->request[$key]) === true)
+					if (Strings::isRegex($this->request[$key]) === true)
 					{
 						if (preg_replace($this->request[$key], "", $info->$key) !== "")
 						{
