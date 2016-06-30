@@ -1,6 +1,8 @@
 <?php
 	namespace Bolt;
 
+	use DirectoryIterator;
+
 	class Api extends Base
 	{
 		public $request;
@@ -159,18 +161,18 @@
 			$this->response->status(204, null, $headers);
 		}
 
-		public function fetchControllerList()
+		public function controllers()
 		{
 			$results = array();
 
-			foreach (new \DirectoryIterator(ROOT_SERVER . "controllers/") as $fileInfo)
+			foreach (new DirectoryIterator(ROOT_SERVER . "app/Controllers/") as $fileInfo)
 			{
-				if ($fileInfo->isDot())
+				if ($fileInfo->isDot() || $fileInfo->isDir() || $fileInfo->getExtension() != "php")
 				{
 					continue;
 				}
 
-				$results[] = str_replace(".php", "", $fileInfo->getFilename());
+				$results[] = $fileInfo->getBasename("." . $fileInfo->getExtension());
 			}
 
 			return $results;
