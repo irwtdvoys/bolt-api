@@ -12,8 +12,16 @@
 		public function __construct($data)
 		{
 			$this->request['controller'] = $this->parse($data->request->controller);
-			$this->request['id'] = $this->parse($data->request->id);
-			$this->request['action'] = $this->parse($data->request->action);
+
+			if (isset($data->request->id))
+			{
+				$this->request['id'] = $this->parse($data->request->id);
+			}
+
+			if (isset($data->request->action))
+			{
+				$this->request['action'] = $this->parse($data->request->action);
+			}
 
 			$this->route['controller'] = $data->route->controller;
 			$this->route['method'] = $data->route->method;
