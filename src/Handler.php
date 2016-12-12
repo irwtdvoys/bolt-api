@@ -10,10 +10,7 @@
 
 		public static function exception($exception)
 		{
-			$response = new Api\Response();
 			$className = get_class($exception);
-
-			error_log($exception->getMessage());
 
 			if (DEPLOYMENT == "production")
 			{
@@ -31,7 +28,22 @@
 				);
 			}
 
-			$response->status(500, $data);
+			if (php_sapi_name() == "cli")
+			{
+				if (!is_string($data))
+				{
+					$data = json_encode($data, JSON_PRETTY_PRINT);
+				}
+
+				echo($data . "\n");
+			}
+			else
+			{
+				$response = new Api\Response();
+				$response->status(500, $data);
+			}
+
+			die();
 		}
 	}
 ?>
