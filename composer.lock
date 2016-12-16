@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "cruxoft/bolt-core",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-core.git",
-                "reference": "4267dc4f4433d079142327679c3d3a29f4ea513c"
+                "reference": "3d22afe1e10dc1935b1babf54825eb93867b4c59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/4267dc4f4433d079142327679c3d3a29f4ea513c",
-                "reference": "4267dc4f4433d079142327679c3d3a29f4ea513c",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/3d22afe1e10dc1935b1babf54825eb93867b4c59",
+                "reference": "3d22afe1e10dc1935b1babf54825eb93867b4c59",
                 "shasum": ""
             },
             "require": {
@@ -48,20 +48,20 @@
                 "bolt",
                 "framework"
             ],
-            "time": "2016-08-02 08:37:46"
+            "time": "2016-12-16 15:56:22"
         },
         {
             "name": "cruxoft/bolt-mvc",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-mvc.git",
-                "reference": "39f39f4b72076a02fa24ca97ac31d9b32479745a"
+                "reference": "52ee0375b1ae7307723db632e2b34f78c02ba590"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/39f39f4b72076a02fa24ca97ac31d9b32479745a",
-                "reference": "39f39f4b72076a02fa24ca97ac31d9b32479745a",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/52ee0375b1ae7307723db632e2b34f78c02ba590",
+                "reference": "52ee0375b1ae7307723db632e2b34f78c02ba590",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +90,7 @@
                 "mvc",
                 "php"
             ],
-            "time": "2016-12-12 18:43:29"
+            "time": "2016-12-16 16:31:32"
         }
     ],
     "packages-dev": [
@@ -1102,16 +1102,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "f2300ba8fbb002c028710b92e1906e7457410693"
+                "reference": "a7095af4b97a0955f85c8989106c249fa649011f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/f2300ba8fbb002c028710b92e1906e7457410693",
-                "reference": "f2300ba8fbb002c028710b92e1906e7457410693",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a7095af4b97a0955f85c8989106c249fa649011f",
+                "reference": "a7095af4b97a0955f85c8989106c249fa649011f",
                 "shasum": ""
             },
             "require": {
@@ -1153,7 +1153,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-18 21:17:59"
+            "time": "2016-12-10 10:07:06"
         },
         {
             "name": "webmozart/assert",
