@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "cruxoft/bolt-core",
-            "version": "0.2.1",
+            "version": "0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-core.git",
-                "reference": "3d22afe1e10dc1935b1babf54825eb93867b4c59"
+                "reference": "e7ddeb1cf100d40f7ab36af53983a7f45a8130cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/3d22afe1e10dc1935b1babf54825eb93867b4c59",
-                "reference": "3d22afe1e10dc1935b1babf54825eb93867b4c59",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/e7ddeb1cf100d40f7ab36af53983a7f45a8130cf",
+                "reference": "e7ddeb1cf100d40f7ab36af53983a7f45a8130cf",
                 "shasum": ""
             },
             "require": {
@@ -48,20 +48,20 @@
                 "bolt",
                 "framework"
             ],
-            "time": "2016-12-16 15:56:22"
+            "time": "2016-12-16 16:53:10"
         },
         {
             "name": "cruxoft/bolt-mvc",
-            "version": "0.2.1",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-mvc.git",
-                "reference": "52ee0375b1ae7307723db632e2b34f78c02ba590"
+                "reference": "788e46a785a58deb2257529e4a8743cc1bfc6b2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/52ee0375b1ae7307723db632e2b34f78c02ba590",
-                "reference": "52ee0375b1ae7307723db632e2b34f78c02ba590",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/788e46a785a58deb2257529e4a8743cc1bfc6b2b",
+                "reference": "788e46a785a58deb2257529e4a8743cc1bfc6b2b",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +90,7 @@
                 "mvc",
                 "php"
             ],
-            "time": "2016-12-16 16:31:32"
+            "time": "2016-12-16 16:57:04"
         }
     ],
     "packages-dev": [
