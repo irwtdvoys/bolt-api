@@ -12,7 +12,6 @@
 		public $connections;
 		public $route;
 
-		private $permissions;
 		private $whitelist;
 
 		public function __construct($connections = null)
@@ -59,33 +58,6 @@
 					$this->route->info->id = $_ID;
 				}
 			}
-		}
-
-		public function enforcePermission($controller, $name)
-		{
-			$result = $this->checkPermission($controller, $name);
-
-			if ($result === false)
-			{
-				$this->response->status(403);
-			}
-
-			return true;
-		}
-
-		public function checkPermission($controller, $name)
-		{
-			$result = false;
-
-			$permissions = $this->permissions->system->$controller;
-			$requiredPermission = constant("\\Controllers\\Permissions\\" . $controller . "::" . strtoupper($name));
-
-			if (($permissions & $requiredPermission) === $requiredPermission)
-			{
-				$result = true;
-			}
-
-			return $result;
 		}
 
 		private function checkWhitelist()
