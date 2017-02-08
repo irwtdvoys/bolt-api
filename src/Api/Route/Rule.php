@@ -71,14 +71,14 @@
 			);
 		}
 
-		private function parse($string, $info = false)
+		private function parse($string, $info = null)
 		{
 			$string = $this->wildcardToRegex($string, $info);
 			$string = $this->applyFunctions($string);
 			return ($string === "") ? null : $string;
 		}
 
-		private function wildcardToRegex($string, $info = false)
+		private function wildcardToRegex($string, $info = null)
 		{
 			$wildcards = array(
 				"num" => "/[0-9]/",
