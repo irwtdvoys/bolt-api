@@ -174,15 +174,8 @@
 			}
 		}
 
-		public function authenticate()
+		protected function getAuthClass()
 		{
-			if (!isset($this->request->headers->authorization))
-			{
-				$this->response->status(401);
-			}
-
-			$this->authentication->parse($this->request->headers->authorization());
-
 			$available = $this->authentication->schemas();
 
 			$authClass = $available->{$this->authentication->scheme()};
@@ -192,7 +185,19 @@
 				$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
 			}
 
-			$authHandler = new $authClass($this->connections);
+			return new $authClass($this->connections);
+		}
+
+		public function authenticate()
+		{
+			if (!isset($this->request->headers->authorization))
+			{
+				$this->response->status(401);
+			}
+
+			$this->authentication->parse($this->request->headers->authorization());
+
+			$authHandler = $this->getAuthClass();
 
 			return $authHandler->authenticate($this->authentication->parameters(), $this->route());
 		}
