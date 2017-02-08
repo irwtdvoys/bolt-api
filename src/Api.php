@@ -58,11 +58,6 @@
 					global $_ID;
 					$this->route->info->id = $_ID;
 				}
-
-				if ($this->authentication->scheme() == "Global")
-				{
-					$this->enforcePermission($this->route->controller, $this->route->method);
-				}
 			}
 		}
 
