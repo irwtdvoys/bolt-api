@@ -194,7 +194,7 @@
 
 			$authHandler = new $authClass($this->connections);
 
-			return $authHandler->authenticate($this->authentication->parameters());
+			return $authHandler->authenticate($this->authentication->parameters(), $this->route());
 		}
 	}
 ?>
