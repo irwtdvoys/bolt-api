@@ -39,8 +39,8 @@
 				}
 			}
 
-			$this->controller = $data['controller'];
-			$this->method = $data['method'];
+			$this->controller = isset($data['controller']) ? $data['controller'] : null;
+			$this->method = isset($data['method']) ? $data['method'] : null;
 		}
 
 		private function loadRules()
