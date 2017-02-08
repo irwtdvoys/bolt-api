@@ -12,7 +12,6 @@
 		public $connections;
 		public $route;
 
-		private $permissions;
 		private $whitelist;
 
 		public function __construct($connections = null)
@@ -58,39 +57,7 @@
 					global $_ID;
 					$this->route->info->id = $_ID;
 				}
-
-				if ($this->authentication->scheme() == "Global")
-				{
-					$this->enforcePermission($this->route->controller, $this->route->method);
-				}
 			}
-		}
-
-		public function enforcePermission($controller, $name)
-		{
-			$result = $this->checkPermission($controller, $name);
-
-			if ($result === false)
-			{
-				$this->response->status(403);
-			}
-
-			return true;
-		}
-
-		public function checkPermission($controller, $name)
-		{
-			$result = false;
-
-			$permissions = $this->permissions->system->$controller;
-			$requiredPermission = constant("\\Controllers\\Permissions\\" . $controller . "::" . strtoupper($name));
-
-			if (($permissions & $requiredPermission) === $requiredPermission)
-			{
-				$result = true;
-			}
-
-			return $result;
 		}
 
 		private function checkWhitelist()
@@ -207,15 +174,8 @@
 			}
 		}
 
-		public function authenticate()
+		protected function getAuthClass()
 		{
-			if (!isset($this->request->headers->authorization))
-			{
-				$this->response->status(401);
-			}
-
-			$this->authentication->parse($this->request->headers->authorization());
-
 			$available = $this->authentication->schemas();
 
 			$authClass = $available->{$this->authentication->scheme()};
@@ -225,9 +185,21 @@
 				$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
 			}
 
-			$authHandler = new $authClass($this->connections);
+			return new $authClass($this->connections);
+		}
 
-			return $authHandler->authenticate($this->authentication->parameters());
+		public function authenticate()
+		{
+			if (!isset($this->request->headers->authorization))
+			{
+				$this->response->status(401);
+			}
+
+			$this->authentication->parse($this->request->headers->authorization());
+
+			$authHandler = $this->getAuthClass();
+
+			return $authHandler->authenticate($this->authentication->parameters(), $this->route());
 		}
 	}
 ?>
