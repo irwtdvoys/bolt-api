@@ -27,6 +27,11 @@
 
 		public function __call($name, $arguments)
 		{
+			if ($name == "headers")
+			{
+				return $this->headers;
+			}
+
 			if ($arguments == array())
 			{
 				return $this->headers[$name];
