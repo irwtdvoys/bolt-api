@@ -1,7 +1,9 @@
 <?php
 	namespace Bolt\Api;
 
-	class Response extends \Bolt\Http
+	use Bolt\Http;
+
+	class Response extends Http
 	{
 		public $headers;
 		public $view;
