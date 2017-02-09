@@ -1,7 +1,10 @@
 <?php
 	namespace Bolt\Api\Route;
 
-	class Info extends \Bolt\Base
+	use Bolt\Base;
+	use Bolt\Strings;
+
+	class Info extends Base
 	{
 		public $verb;
 		public $controller;
@@ -27,7 +30,7 @@
 			$uri = !empty($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['REQUEST_URI'];
 
 			$adjustedRoot = (strpos($uri, "/latest") === 0) ? str_replace(VERSION_INTERNAL_API, "latest", ROOT_API): ROOT_API;
-			$fullRequestPath = \Bolt\Strings::replaceOverlap($adjustedRoot, $uri);
+			$fullRequestPath = Strings::replaceOverlap($adjustedRoot, $uri);
 			$path = str_replace($adjustedRoot, "", $fullRequestPath);
 
 			$bits = explode("/", $path);
