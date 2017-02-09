@@ -12,23 +12,15 @@
 		{
 			$this->code = 200;
 			$this->data = false;
-			$this->headers = array();
+			$this->headers = new Response\Headers();
 			$this->setView("json");
 		}
 
 		public function output()
 		{
-			if ($this->headers === false || $this->headers === array())
-			{
-				$this->headers = " ";
-			}
+			$headers = $this->headers->headers();
 
-			if (!is_array($this->headers))
-			{
-				$this->headers = array($this->headers);
-			}
-
-			foreach ($this->headers as $header)
+			foreach ($headers as $header)
 			{
 				header($header, true, $this->code);
 			}
@@ -69,7 +61,7 @@
 
 			if ($code == 419)
 			{
-				$this->addHeader("HTTP/1.1 419 Authentication Timeout");
+				$this->headers->add("HTTP/1.1 419 Authentication Timeout");
 			}
 
 			if ($data !== false)
@@ -93,13 +85,8 @@
 
 			foreach ($headers as $header)
 			{
-				$this->addHeader($header);
+				$this->headers->add($header);
 			}
-		}
-
-		public function addHeader($header)
-		{
-			$this->headers[] = (string)$header;
 		}
 
 		public function setView($format)
