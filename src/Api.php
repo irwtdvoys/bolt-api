@@ -188,7 +188,7 @@
 			return new $authClass($this->connections);
 		}
 
-		public function authenticate()
+		public function authenticate($whitelisted = false)
 		{
 			if (!isset($this->request->headers->authorization))
 			{
@@ -199,7 +199,9 @@
 
 			$authHandler = $this->getAuthClass();
 
-			return $authHandler->authenticate($this->authentication->parameters(), $this->route());
+			$route = ($whitelisted === true) ? null : $this->route();
+
+			return $authHandler->authenticate($this->authentication->parameters(), $route);
 		}
 	}
 ?>
