@@ -40,11 +40,11 @@
 
 			$this->loadWhitelist();
 
-			if ($this->checkWhitelist() === false)
+			if (isset($this->request->headers->authorization) && !empty($this->request->headers->authorization()))
 			{
 				try
 				{
-					$this->authenticate();
+					$this->authenticate($this->checkWhitelist());
 				}
 				catch (Exceptions\Authentication $exception)
 				{
@@ -188,7 +188,7 @@
 			return new $authClass($this->connections);
 		}
 
-		public function authenticate()
+		public function authenticate($whitelisted = false)
 		{
 			if (!isset($this->request->headers->authorization))
 			{
@@ -199,7 +199,9 @@
 
 			$authHandler = $this->getAuthClass();
 
-			return $authHandler->authenticate($this->authentication->parameters(), $this->route());
+			$route = ($whitelisted === true) ? null : $this->route();
+
+			return $authHandler->authenticate($this->authentication->parameters(), $route);
 		}
 	}
 ?>
