@@ -81,7 +81,7 @@
 
 		public function setHeaders($headers)
 		{
-			$this->headers = array();
+			$this->headers = new Response\Headers();
 
 			$headers = !is_array($headers) ? array($headers) : $headers;
 
