@@ -1,7 +1,9 @@
 <?php
 	namespace Bolt\Api\Request;
 
-	class Files extends \Bolt\Base
+	use Bolt\Base;
+
+	class Files extends Base
 	{
 		public $uploads;
 

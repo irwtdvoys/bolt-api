@@ -1,7 +1,9 @@
 <?php
 	namespace Bolt\Api\Request;
 
-	class Parameters extends \Bolt\Base
+	use Bolt\Base;
+
+	class Parameters extends Base
 	{
 		private $parameters;
 

@@ -1,7 +1,9 @@
 <?php
 	namespace Bolt\Api\Request;
 
-	class Range extends \Bolt\Base
+	use Bolt\Base;
+
+	class Range extends Base
 	{
 		public $start;
 		public $end;
