@@ -5,6 +5,8 @@
 
 	class Authentication extends Base
 	{
+		public $id;
+
 		public $schemas;
 
 		public $scheme;
