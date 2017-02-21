@@ -51,10 +51,12 @@
 					$this->response->status($exception->getCode());
 				}
 
+				global $_ID;
+				$this->authentication->id($_ID);
+
 				// allow aliasing logged in user id as 'me'
 				if ($this->route->info->id == "me")
 				{
-					global $_ID;
 					$this->route->info->id = $_ID;
 				}
 			}
