@@ -199,7 +199,7 @@
 
 			$this->authentication->parse($this->request->headers->authorization());
 
-			$authHandler = $this->getAuthClass();
+			$authHandler = $this->authentication->getAuthClass($this->connections());
 
 			$route = ($whitelisted === true) ? null : $this->route();
 
