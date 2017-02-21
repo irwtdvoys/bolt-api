@@ -65,5 +65,20 @@
 		{
 			return $this->parameters->token;
 		}
+
+		public function getAuthClass($connections = null)
+		{
+			$available = $this->schemas();
+
+			$authClass = $available->{$this->scheme()};
+
+			if (!class_exists($authClass))
+			{
+				return false;
+				#$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
+			}
+
+			return new $authClass($connections);
+		}
 	}
 ?>

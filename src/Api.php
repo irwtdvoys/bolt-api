@@ -176,20 +176,6 @@
 			}
 		}
 
-		protected function getAuthClass()
-		{
-			$available = $this->authentication->schemas();
-
-			$authClass = $available->{$this->authentication->scheme()};
-
-			if (!class_exists($authClass))
-			{
-				$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
-			}
-
-			return new $authClass($this->connections);
-		}
-
 		public function authenticate($whitelisted = false)
 		{
 			if (!isset($this->request->headers->authorization))
@@ -199,7 +185,7 @@
 
 			$this->authentication->parse($this->request->headers->authorization());
 
-			$authHandler = $this->getAuthClass();
+			$authHandler = $this->authentication->getAuthClass($this->connections());
 
 			$route = ($whitelisted === true) ? null : $this->route();
 
