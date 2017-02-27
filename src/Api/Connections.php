@@ -52,5 +52,17 @@
 
 			return $results;
 		}
+
+		public function __call($name, $args)
+		{
+			if ($args == array())
+			{
+				return $this->$name;
+			}
+
+			$this->$name = $args[0];
+
+			return true;
+		}
 	}
 ?>

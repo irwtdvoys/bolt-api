@@ -16,12 +16,8 @@
     ],
     "require": {
         "php": ">=5.6",
-	    "cruxoft/bolt-mvc": "^0.2"
+	    "cruxoft/bolt-mvc": "^0.3"
     },
-    "require-dev": {
-        "phpunit/phpunit": "4.8.*"
-    },
-    "suggest": {},
     "autoload": {
         "psr-4": {
             "Bolt\\": "src/"
