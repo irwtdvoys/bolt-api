@@ -40,11 +40,18 @@
 
 			$this->loadWhitelist();
 
+			$whitelisted = $this->checkWhitelist();
+
+			if ($whitelisted === false && (!isset($this->request->headers->authorization) || empty($this->request->headers->authorization())))
+			{
+				$this->response->status(401);
+			}
+
 			if (isset($this->request->headers->authorization) && !empty($this->request->headers->authorization()))
 			{
 				try
 				{
-					$this->authenticate($this->checkWhitelist());
+					$this->authenticate($whitelisted);
 				}
 				catch (Exceptions\Authentication $exception)
 				{
