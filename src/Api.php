@@ -191,12 +191,11 @@
 			}
 
 			$this->authentication->parse($this->request->headers->authorization());
-
-			$authHandler = $this->authentication->getAuthClass($this->connections());
+			$this->authentication->handler($this->connections());
 
 			$route = ($whitelisted === true) ? null : $this->route();
 
-			return $authHandler->authenticate($this->authentication->parameters(), $route);
+			return $this->authentication->handler->authenticate($this->authentication->parameters(), $route);
 		}
 	}
 ?>
