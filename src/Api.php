@@ -191,7 +191,11 @@
 			}
 
 			$this->authentication->parse($this->request->headers->authorization());
-			$this->authentication->handler($this->connections());
+
+			if ($this->authentication->handler($this->connections()) === false)
+			{
+				$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
+			}
 
 			$route = ($whitelisted === true) ? null : $this->route();
 
