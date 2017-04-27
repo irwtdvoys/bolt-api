@@ -51,16 +51,16 @@
         },
         {
             "name": "cruxoft/bolt-mvc",
-            "version": "0.3.0",
+            "version": "0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-mvc.git",
-                "reference": "84def5dbf63e8f19cdf30d050e82973427e12f32"
+                "reference": "a96e9f846c35a188f8bb07ff01075010d26cce29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/84def5dbf63e8f19cdf30d050e82973427e12f32",
-                "reference": "84def5dbf63e8f19cdf30d050e82973427e12f32",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/a96e9f846c35a188f8bb07ff01075010d26cce29",
+                "reference": "a96e9f846c35a188f8bb07ff01075010d26cce29",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                 "mvc",
                 "php"
             ],
-            "time": "2017-02-27T18:11:38+00:00"
+            "time": "2017-03-07T18:11:52+00:00"
         }
     ],
     "packages-dev": [],

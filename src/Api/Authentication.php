@@ -12,6 +12,8 @@
 		public $scheme;
 		public $parameters;
 
+		public $handler;
+
 		public function __construct()
 		{
 			$this->schemas = new \stdClass();
@@ -66,19 +68,27 @@
 			return $this->parameters->token;
 		}
 
-		public function getAuthClass($connections = null)
+		public function handler($connections = null)
 		{
-			$available = $this->schemas();
-
-			$authClass = $available->{$this->scheme()};
-
-			if (!class_exists($authClass))
+			if ($connections !== null)
 			{
-				return false;
-				#$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
-			}
+				$available = $this->schemas();
 
-			return new $authClass($connections);
+				$authClass = $available->{$this->scheme()};
+
+				if (!class_exists($authClass))
+				{
+					return false;
+				}
+
+				$this->handler = new $authClass($connections);
+
+				return true;
+			}
+			else
+			{
+				return $this->handler;
+			}
 		}
 	}
 ?>
