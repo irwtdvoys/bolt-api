@@ -79,7 +79,6 @@
 				if (!class_exists($authClass))
 				{
 					return false;
-					#$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
 				}
 
 				$this->handler = new $authClass($connections);
