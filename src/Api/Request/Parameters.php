@@ -1,6 +1,7 @@
 <?php
 	namespace Bolt\Api\Request;
 
+	use Bolt\Arrays;
 	use Bolt\Base;
 
 	class Parameters extends Base
@@ -138,43 +139,40 @@
 			return true;
 		}
 
-		// Todo: efficiency work here, remove reliance on checkParameters as it duplicates code different system instead of eval
-		public function filter($expected)
+		public function filter($fields, $parameters = null)
 		{
-			if (!is_array($expected))
+			if (!is_array($fields))
 			{
-				$expected = explode(",", $expected);
+				$fields = explode(",", $fields);
 			}
 
-			$parameters = array();
-
-			foreach ($expected as $field)
+			if ($parameters === null)
 			{
-				if ($this->check($field) === true)
+				$parameters = (object)$this->parameters();
+			}
+
+			$result = array();
+
+			foreach ($fields as $key => $value)
+			{
+				if (Arrays::type($fields) === "numeric" || is_integer($key))
 				{
-					$namespace = explode(".", $field);
+					$field = $value;
+					$data = null;
+				}
+				else
+				{
+					$field = $key;
+					$data = $value;
+				}
 
-					$node = (object)$this->parameters;
-					$current = array();
-
-					foreach ($namespace as $next)
-					{
-						$current[] = $next;
-						$node = $node->$next;
-					}
-
-					$string = '$parameters';
-
-					foreach ($current as $next)
-					{
-						$string .= "['" . $next . "']";
-					}
-
-					eval($string . ' = $node;');
+				if (isset($parameters->{$field}))
+				{
+					$result[$field] = ($data === null) ? $parameters->{$field} : $this->filter($fields[$field], $parameters->{$field});
 				}
 			}
 
-			return $parameters;
+			return $result;
 		}
 	}
 ?>
