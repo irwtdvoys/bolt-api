@@ -64,8 +64,13 @@
 			switch ($contentType)
 			{
 				case "application/json":
-					$body_params = json_decode($body);
+					// Catch empty string body from GET requests being processed if the content-type header is still set, json_decode will raise an error code is asked to decode an ampty string
+					if ($body === "" && $_SERVER['REQUEST_METHOD'] == "GET")
+					{
+						break;
+					}
 
+					$body_params = json_decode($body);
 					$error = json_last_error();
 
 					if ($error !== JSON_ERROR_NONE)
