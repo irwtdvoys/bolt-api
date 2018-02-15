@@ -115,29 +115,46 @@
 			}
 		}
 
-		public function check($fields)
+		public function check($fields, $parameters = null)
 		{
 			if (!is_array($fields))
 			{
 				$fields = explode(",", $fields);
 			}
 
-			foreach ($fields as $field)
+			if ($parameters === null)
 			{
-				$namespace = explode(".", $field);
-				$node = (object)$this->parameters;
-				$current = array();
+				$parameters = (object)$this->parameters();
+			}
 
-				foreach ($namespace as $next)
+			$result = array();
+
+			foreach ($fields as $key => $value)
+			{
+				if (Arrays::type($fields) === "numeric" || is_integer($key))
 				{
-					$current[] = $next;
+					$field = $value;
+					$data = null;
+				}
+				else
+				{
+					$field = $key;
+					$data = $value;
+				}
 
-					if ($node === null || !array_key_exists($next, $node))
+				if ($parameters->{$field} === null)
+				{
+					return $field;
+				}
+
+				if ($data !== null)
+				{
+					$check = $this->check($data, $parameters->{$field});
+
+					if ($check !== true)
 					{
-						return implode(".", $current);
+						return $field . "." . $check;
 					}
-
-					$node = $node->$next;
 				}
 			}
 
