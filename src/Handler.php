@@ -12,14 +12,21 @@
 		{
 			$className = get_class($exception);
 
+			$type = $className;
+
+			if ($exception instanceof \Bolt\Exception)
+			{
+				$type .= "::" . $exception->getCodeKey();
+			}
+
 			if (DEPLOYMENT == "production")
 			{
-				$data = $className;
+				$data = $type;
 			}
 			else
 			{
 				$data = array(
-					"type" => $className,
+					"type" => $type,
 					"message" => $exception->getMessage(),
 					"code" => $exception->getCode(),
 					"line" => $exception->getLine(),
