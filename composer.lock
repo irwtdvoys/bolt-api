@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fada8fe9487ca5df2e7c7b4609599e80",
+    "content-hash": "05f6c197d747f8f684f3291fa219bfd4",
     "packages": [
         {
             "name": "cruxoft/bolt-core",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-core.git",
-                "reference": "0262dd320be90ad76ca3217a3930202e267137d7"
+                "reference": "ab6b3ec8b69052d374209a4a13ae89ab6904eaa2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/0262dd320be90ad76ca3217a3930202e267137d7",
-                "reference": "0262dd320be90ad76ca3217a3930202e267137d7",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/ab6b3ec8b69052d374209a4a13ae89ab6904eaa2",
+                "reference": "ab6b3ec8b69052d374209a4a13ae89ab6904eaa2",
                 "shasum": ""
             },
             "require": {
@@ -47,25 +47,24 @@
                 "bolt",
                 "framework"
             ],
-            "time": "2017-02-27T17:54:41+00:00"
+            "time": "2018-02-15T18:30:01+00:00"
         },
         {
             "name": "cruxoft/bolt-mvc",
-            "version": "0.3.1",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-mvc.git",
-                "reference": "a96e9f846c35a188f8bb07ff01075010d26cce29"
+                "reference": "c2541f45b8dd98b7c873842d74d4942385a9de41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/a96e9f846c35a188f8bb07ff01075010d26cce29",
-                "reference": "a96e9f846c35a188f8bb07ff01075010d26cce29",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/c2541f45b8dd98b7c873842d74d4942385a9de41",
+                "reference": "c2541f45b8dd98b7c873842d74d4942385a9de41",
                 "shasum": ""
             },
             "require": {
-                "cruxoft/bolt-core": "^v0.3",
-                "php": ">=5.6"
+                "cruxoft/bolt-core": "^v0.4"
             },
             "type": "library",
             "autoload": {
@@ -89,7 +88,7 @@
                 "mvc",
                 "php"
             ],
-            "time": "2017-03-07T18:11:52+00:00"
+            "time": "2018-02-16T09:25:58+00:00"
         }
     ],
     "packages-dev": [],
@@ -98,8 +97,6 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "php": ">=5.6"
-    },
+    "platform": [],
     "platform-dev": []
 }
