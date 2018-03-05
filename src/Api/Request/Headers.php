@@ -41,32 +41,9 @@
 			return true;
 		}
 
-		private function fetchHeaders()
-		{
-			$headers = array();
-
-			foreach ($_SERVER as $key => $value)
-			{
-				if (strpos($key, "HTTP_") === 0)
-				{
-					$bits = explode("_", $key);
-					array_shift($bits);
-
-					foreach ($bits as &$bit)
-					{
-						$bit = ucwords(strtolower($bit));
-					}
-
-					$headers[implode("-", $bits)] = $value;
-				}
-			}
-
-			return $headers;
-		}
-
 		public function parse()
 		{
-            $this->headers = array_change_key_case($this->fetchHeaders(), CASE_LOWER);
+            $this->headers = array_change_key_case(getallheaders(), CASE_LOWER);
 		}
 	}
 ?>
