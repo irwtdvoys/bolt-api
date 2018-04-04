@@ -108,7 +108,16 @@
 		private function loadJsonConfig($filename)
 		{
 			$fileHandler = new Files();
-			return json_decode($fileHandler->load($filename));
+			$json = json_decode($fileHandler->load($filename));
+
+			$error = json_last_error();
+
+			if ($error !== JSON_ERROR_NONE)
+			{
+				throw new \Exception("Unable to load config file, invalid JSON", $error);
+			}
+
+			return $json;
 		}
 
 		public function fetchAvailableOptions()

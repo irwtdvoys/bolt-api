@@ -48,6 +48,12 @@
 			$fileHandler = new Files();
 
 			$config = json_decode($fileHandler->load(ROOT_SERVER . "/library/routes.json"));
+			$error = json_last_error();
+
+			if ($error !== JSON_ERROR_NONE)
+			{
+				throw new \Exception("Unable to load routes, invalid JSON", $error);
+			}
 
 			if (count($config) > 0)
 			{
