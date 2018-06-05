@@ -19,9 +19,9 @@
 
 				$urlElements = explode("/", $this->parseUrl());
 
-				$this->controller = isset($urlElements[0]) ? $urlElements[0] : null;
-				$this->id = isset($urlElements[1]) ? $urlElements[1] : null;
-				$this->action = isset($urlElements[2]) ? $urlElements[2] : null;
+				$this->controller = isset($urlElements[0]) ? rawurldecode($urlElements[0]) : null;
+				$this->id = isset($urlElements[1]) ? rawurldecode($urlElements[1]) : null;
+				$this->action = isset($urlElements[2]) ? rawurldecode($urlElements[2]) : null;
 			}
 		}
 
