@@ -83,7 +83,7 @@
 			$wildcards = array(
 				"num" => "/[0-9]/",
 				"alpha" => "/[A-z]/",
-				"any" => "/[A-z0-9-\.]/"
+				"any" => "/[A-z0-9-\. ]/"
 			);
 
 			if (is_object($info))
