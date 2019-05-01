@@ -1,1 +1,1 @@
-# bolt-api (v0.7.4)
+# bolt-api (v0.7.5)
