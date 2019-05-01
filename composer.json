@@ -15,8 +15,11 @@
         }
     ],
     "require": {
-        "cruxoft/bolt-mvc": "^0.4",
+        "cruxoft/bolt-mvc": "^0.5.0",
         "ralouphie/getallheaders": "^2.0"
+    },
+    "require-dev": {
+        "cruxoft/dump": "^0.2.2"
     },
     "autoload": {
         "psr-4": {
