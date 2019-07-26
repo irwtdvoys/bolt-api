@@ -115,41 +115,27 @@
 			}
 		}
 
-		public function check($fields, $parameters = null)
+		public function check(InputMask $mask, $parameters = null)
 		{
-			if (!is_array($fields))
-			{
-				$fields = explode(",", $fields);
-			}
-
 			if ($parameters === null)
 			{
 				$parameters = (object)$this->parameters();
 			}
 
-			$result = array();
+			$fields = $mask->children();
 
-			foreach ($fields as $key => $value)
+			foreach ($fields as $next)
 			{
-				if (Arrays::type($fields) === "numeric" || is_integer($key))
-				{
-					$field = $value;
-					$data = null;
-				}
-				else
-				{
-					$field = $key;
-					$data = $value;
-				}
+				$field = $next->name();
 
 				if ($parameters->{$field} === null)
 				{
 					return $field;
 				}
 
-				if ($data !== null)
+				if (!empty($next->children))
 				{
-					$check = $this->check($data, $parameters->{$field});
+					$check = $this->check($next, $parameters->{$field});
 
 					if ($check !== true)
 					{
@@ -161,36 +147,24 @@
 			return true;
 		}
 
-		public function filter($fields, $parameters = null)
+		public function filter(InputMask $mask, $parameters = null)
 		{
-			if (!is_array($fields))
-			{
-				$fields = explode(",", $fields);
-			}
-
 			if ($parameters === null)
 			{
 				$parameters = (object)$this->parameters();
 			}
 
 			$result = array();
+			$fields = $mask->children();
 
-			foreach ($fields as $key => $value)
+			foreach ($fields as $next)
 			{
-				if (Arrays::type($fields) === "numeric" || is_integer($key))
-				{
-					$field = $value;
-					$data = null;
-				}
-				else
-				{
-					$field = $key;
-					$data = $value;
-				}
+				$field = $next->name();
+				$data = $next->children();
 
 				if (isset($parameters->{$field}))
 				{
-					$result[$field] = ($data === null) ? $parameters->{$field} : $this->filter($fields[$field], $parameters->{$field});
+					$result[$field] = empty($data) ? $parameters->{$field} : $this->filter($next, $parameters->{$field});
 				}
 			}
 
