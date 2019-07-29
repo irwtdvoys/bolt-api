@@ -108,13 +108,14 @@
 		private function loadJsonConfig($filename)
 		{
 			$fileHandler = new Files();
-			$json = json_decode($fileHandler->load($filename));
-
-			$error = json_last_error();
-
-			if ($error !== JSON_ERROR_NONE)
+			
+			try
 			{
-				throw new \Exception("Unable to load config file, invalid JSON", $error);
+				$json = Json::decode($fileHandler->load($filename));
+			}
+			catch (\Exception $exception)
+			{
+				throw new \Exception("Unable to load config file, invalid JSON", $exception->getCode());
 			}
 
 			return $json;
