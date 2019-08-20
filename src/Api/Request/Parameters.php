@@ -128,7 +128,7 @@
 			{
 				$field = $next->name();
 
-				if ($parameters->{$field} === null)
+				if ($next->options['required'] === true && $parameters->{$field} === null)
 				{
 					return $field;
 				}
