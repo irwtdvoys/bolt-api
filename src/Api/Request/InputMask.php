@@ -37,13 +37,14 @@
 			{
 				if (Arrays::type($fields) === "numeric" || is_integer($key))
 				{
-					$this->add($value);
+					$this->add($value, null, ["required" => true]);
 				}
 				else
 				{
 					$mask = new InputMask();
 					$mask->name($key);
 					$mask->inflate($value);
+					$mask->options(["required" => true]);
 					$this->children[] = $mask;
 				}
 			}
