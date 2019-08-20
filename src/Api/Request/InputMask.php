@@ -3,7 +3,6 @@
 
 	use Bolt\Base;
 	use Bolt\Arrays;
-	use function Cruxoft\dump;
 
 	class InputMask extends Base
 	{
