@@ -41,7 +41,7 @@
 				}
 			}
 
-			$this->controller = isset($data['controller']) ? $data['controller'] : null;
+			$this->controller = isset($data['controller']) ? "App\\Controllers\\" . $data['controller'] : null;
 			$this->method = isset($data['method']) ? $data['method'] : null;
 		}
 
