@@ -23,9 +23,10 @@
 				"type" => $type,
 				"options" => $options
 			);
-			$this->children[] = new InputMask($structure);
 
+			$class = ($type !== null) ? $type : InputMask::class;
 
+			$this->children[] = new $class($structure);
 
 			return $this;
 		}
@@ -48,6 +49,18 @@
 				}
 			}
 
+			return $this;
+		}
+		
+		public function options($data = null)
+		{
+			if ($data === null)
+			{
+				return $this->options;
+			}
+			
+			$this->options = array_merge($this->options, $data);
+			
 			return $this;
 		}
 	}
