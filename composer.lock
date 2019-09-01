@@ -4,27 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8bdcdec5cbd2f46a535c3660ef941f1a",
+    "content-hash": "3600763c6dcfcaf0ab9b80118639c6da",
     "packages": [
         {
             "name": "cruxoft/bolt-core",
-            "version": "0.6.1",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-core.git",
-                "reference": "78ce7b9cb2bd868d3d80c2a82dc7fc0fa04532d2"
+                "reference": "3d909285cf63728d1a43a3c66dad5edabc4b7381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/78ce7b9cb2bd868d3d80c2a82dc7fc0fa04532d2",
-                "reference": "78ce7b9cb2bd868d3d80c2a82dc7fc0fa04532d2",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/3d909285cf63728d1a43a3c66dad5edabc4b7381",
+                "reference": "3d909285cf63728d1a43a3c66dad5edabc4b7381",
                 "shasum": ""
             },
-            "require": {
-                "php": ">=5.6"
-            },
             "require-dev": {
-                "phpunit/phpunit": "4.8.*"
+                "cruxoft/dump": "^0.2.2"
             },
             "type": "library",
             "autoload": {
@@ -47,24 +44,29 @@
                 "bolt",
                 "framework"
             ],
-            "time": "2018-05-08T13:05:41+00:00"
+            "time": "2019-09-01T11:07:21+00:00"
         },
         {
             "name": "cruxoft/bolt-json",
-            "version": "0.2.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-json.git",
-                "reference": "e9b6f3c2e1b6cf74cfc457bfbd86b15b3ed8cc37"
+                "reference": "bfa8f5686e68e35c5e52a836552000b45f027046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-json/zipball/e9b6f3c2e1b6cf74cfc457bfbd86b15b3ed8cc37",
-                "reference": "e9b6f3c2e1b6cf74cfc457bfbd86b15b3ed8cc37",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-json/zipball/bfa8f5686e68e35c5e52a836552000b45f027046",
+                "reference": "bfa8f5686e68e35c5e52a836552000b45f027046",
                 "shasum": ""
             },
             "require": {
-                "cruxoft/bolt-core": "^0.6.0"
+                "cruxoft/bolt-core": "^0.7.0",
+                "ext-json": "*",
+                "php": "^7"
+            },
+            "require-dev": {
+                "cruxoft/dump": "^0.2.0"
             },
             "type": "library",
             "autoload": {
@@ -87,25 +89,25 @@
                 "bolt",
                 "json"
             ],
-            "time": "2018-05-09T16:24:43+00:00"
+            "time": "2019-09-01T11:30:04+00:00"
         },
         {
             "name": "cruxoft/bolt-mvc",
-            "version": "0.5.0",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-mvc.git",
-                "reference": "a737d677787827e0fb69f68a542a5a4ce4a85a5d"
+                "reference": "0d97bb35941443fa1fa3a90a7c5db7e0f7443b0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/a737d677787827e0fb69f68a542a5a4ce4a85a5d",
-                "reference": "a737d677787827e0fb69f68a542a5a4ce4a85a5d",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/0d97bb35941443fa1fa3a90a7c5db7e0f7443b0b",
+                "reference": "0d97bb35941443fa1fa3a90a7c5db7e0f7443b0b",
                 "shasum": ""
             },
             "require": {
-                "cruxoft/bolt-core": "^v0.6.0",
-                "cruxoft/bolt-json": "^0.2.0"
+                "cruxoft/bolt-json": "^0.3.0",
+                "php": "^7.2.0"
             },
             "require-dev": {
                 "cruxoft/dump": "^0.2.2"
@@ -113,7 +115,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bolt\\": "src/"
+                    "Bolt\\": "src/",
+                    "App\\": "app"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -132,7 +135,7 @@
                 "mvc",
                 "php"
             ],
-            "time": "2019-05-01T20:48:33+00:00"
+            "time": "2019-09-01T12:02:16+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
