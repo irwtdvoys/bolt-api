@@ -131,7 +131,7 @@
 
 			foreach ($possibleMethods as $next)
 			{
-				if (method_exists("\\App\\Controllers\\" . $this->route->controller, strtolower($next) . $methodTail) === true)
+				if (method_exists($this->route->controller, strtolower($next) . $methodTail) === true)
 				{
 					$available[] = $next;
 				}
@@ -167,10 +167,10 @@
 
 		public function routing()
 		{
-			if ($this->route->controller != "" && $_SERVER['REQUEST_METHOD'] != "OPTIONS")
-			{
-				$controller = "App\\Controllers\\" . $this->route->controller;
+			$controller = $this->route->controller();
 
+			if ($controller != "" && $_SERVER['REQUEST_METHOD'] != "OPTIONS")
+			{
 				if (!class_exists($controller))
 				{
 					$this->response->status(404);
