@@ -68,6 +68,42 @@
 					$this->route->info->id = $_ID;
 				}
 			}
+
+			$controllerName = $this->route->controller;
+
+			if (class_exists($controllerName))
+			{
+				$controller = new $controllerName();
+
+				if (method_exists($controller, $this->route->method))
+				{
+					$this->response->data = $controller->{$this->route->method}($this);
+				}
+			}
+			elseif ($this->route->controller == "")
+			{
+				if (file_exists(ROOT_SERVER . "logs/packages.json"))
+				{
+					$packages = Json::decode(file_get_contents(ROOT_SERVER . "logs/packages.json"));
+
+					foreach ($packages as $name => $version)
+					{
+						define(strtoupper("packages_" . preg_replace("/[\/-]/", "_", $name, 2)), $version);
+					}
+				}
+
+				$config = new Config();
+
+				$this->response->data = array(
+					"name" => API_NAME,
+					"deployment" => DEPLOYMENT,
+					"versioning" => $config->info("version"),
+					"packages" => $config->info("packages"),
+					"timestamp" => (new DateTime())->format("c")
+				);
+			}
+
+			$this->response->output();
 		}
 
 		private function checkWhitelist()
