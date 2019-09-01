@@ -1,6 +1,7 @@
 <?php
 	namespace Bolt;
 
+	use DateTime;
 	use DirectoryIterator;
 
 	class Api extends Base
@@ -35,7 +36,7 @@
 
 			if ($this->route->info->verb == "OPTIONS")
 			{
-				$this->handleOptions($this->route->controller);
+				$this->handleOptions();
 			}
 
 			$this->loadWhitelist();

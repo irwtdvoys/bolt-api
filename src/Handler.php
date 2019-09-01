@@ -1,6 +1,8 @@
 <?php
 	namespace Bolt;
 
+	use Bolt\Api\Response;
+
 	class Handler
 	{
 		public static function error($level, $message, $file, $line, $context)
@@ -14,7 +16,7 @@
 
 			$type = $className;
 
-			if ($exception instanceof \Bolt\Exception)
+			if ($exception instanceof Exception)
 			{
 				$type .= "::" . $exception->getCodeKey();
 			}
@@ -46,11 +48,11 @@
 			}
 			else
 			{
-				$response = new Api\Response();
+				$response = new Response();
 				$response->status(500, $data);
 			}
 
-			die();
+			return true;
 		}
 	}
 ?>

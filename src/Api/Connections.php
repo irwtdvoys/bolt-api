@@ -1,7 +1,10 @@
 <?php
 	namespace Bolt\Api;
 
-	class Connections extends \Bolt\Base
+	use Bolt\Base;
+	use Bolt\Interfaces\Connection;
+
+	class Connections extends Base
 	{
 		public $sources;
 
@@ -23,7 +26,7 @@
 			}
 		}
 
-		public function add($connection, $identifier = null)
+		public function add(Connection $connection = null, $identifier = null)
 		{
 			$this->sources[] = $connection;
 
