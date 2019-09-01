@@ -1,6 +1,7 @@
 <?php
 	namespace Bolt;
 
+	use DateTime;
 	use DirectoryIterator;
 
 	class Api extends Base
@@ -35,7 +36,7 @@
 
 			if ($this->route->info->verb == "OPTIONS")
 			{
-				$this->handleOptions($this->route->controller);
+				$this->handleOptions();
 			}
 
 			$this->loadWhitelist();
@@ -67,6 +68,42 @@
 					$this->route->info->id = $_ID;
 				}
 			}
+
+			$controllerName = $this->route->controller;
+
+			if (class_exists($controllerName))
+			{
+				$controller = new $controllerName();
+
+				if (method_exists($controller, $this->route->method))
+				{
+					$this->response->data = $controller->{$this->route->method}($this);
+				}
+			}
+			elseif ($this->route->controller == "")
+			{
+				if (file_exists(ROOT_SERVER . "logs/packages.json"))
+				{
+					$packages = Json::decode(file_get_contents(ROOT_SERVER . "logs/packages.json"));
+
+					foreach ($packages as $name => $version)
+					{
+						define(strtoupper("packages_" . preg_replace("/[\/-]/", "_", $name, 2)), $version);
+					}
+				}
+
+				$config = new Config();
+
+				$this->response->data = array(
+					"name" => API_NAME,
+					"deployment" => DEPLOYMENT,
+					"versioning" => $config->info("version"),
+					"packages" => $config->info("packages"),
+					"timestamp" => (new DateTime())->format("c")
+				);
+			}
+
+			$this->response->output();
 		}
 
 		private function checkWhitelist()
@@ -130,7 +167,7 @@
 
 			foreach ($possibleMethods as $next)
 			{
-				if (method_exists("\\App\\Controllers\\" . $this->route->controller, strtolower($next) . $methodTail) === true)
+				if (method_exists($this->route->controller, strtolower($next) . $methodTail) === true)
 				{
 					$available[] = $next;
 				}
@@ -166,10 +203,10 @@
 
 		public function routing()
 		{
-			if ($this->route->controller != "" && $_SERVER['REQUEST_METHOD'] != "OPTIONS")
-			{
-				$controller = "App\\Controllers\\" . $this->route->controller;
+			$controller = $this->route->controller();
 
+			if ($controller != "" && $_SERVER['REQUEST_METHOD'] != "OPTIONS")
+			{
 				if (!class_exists($controller))
 				{
 					$this->response->status(404);

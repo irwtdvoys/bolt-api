@@ -3,6 +3,8 @@
 
 	use Bolt\Base;
 	use Bolt\Files;
+	use Bolt\Json;
+	use Exception;
 
 	class Route extends Base
 	{
@@ -39,7 +41,7 @@
 				}
 			}
 
-			$this->controller = isset($data['controller']) ? $data['controller'] : null;
+			$this->controller = isset($data['controller']) ? "App\\Controllers\\" . $data['controller'] : null;
 			$this->method = isset($data['method']) ? $data['method'] : null;
 		}
 
@@ -47,12 +49,13 @@
 		{
 			$fileHandler = new Files();
 
-			$config = json_decode($fileHandler->load(ROOT_SERVER . "/library/routes.json"));
-			$error = json_last_error();
-
-			if ($error !== JSON_ERROR_NONE)
+			try
 			{
-				throw new \Exception("Unable to load routes, invalid JSON", $error);
+				$config = Json::decode($fileHandler->load(ROOT_SERVER . "/library/routes.json"));
+			}
+			catch (\Bolt\Exceptions\Json $exception)
+			{
+				throw new Exception("Unable to load routes, invalid JSON");
 			}
 
 			if (count($config) > 0)

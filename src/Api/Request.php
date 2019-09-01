@@ -1,9 +1,12 @@
 <?php
 	namespace Bolt\Api;
 
-	class Request extends \Bolt\Base
+	use Bolt\Base;
+
+	class Request extends Base
 	{
 		public $files;
+		public $format;
 		public $headers;
 		public $parameters;
 

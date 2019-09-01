@@ -1,8 +1,8 @@
 <?php
 	namespace Bolt\Api\Request;
 
-	use Bolt\Arrays;
 	use Bolt\Base;
+	use Bolt\Json;
 
 	class Parameters extends Base
 	{
@@ -70,13 +70,7 @@
 						break;
 					}
 
-					$body_params = json_decode($body);
-					$error = json_last_error();
-
-					if ($error !== JSON_ERROR_NONE)
-					{
-						throw new \Exception("Error decoding JSON", $error);
-					}
+					$body_params = Json::decode($body);
 
 					if ($body_params)
 					{
@@ -128,7 +122,7 @@
 			{
 				$field = $next->name();
 
-				if ($parameters->{$field} === null)
+				if ($next->options['required'] === true && $parameters->{$field} === null)
 				{
 					return $field;
 				}
