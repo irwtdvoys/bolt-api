@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "cruxoft/bolt-mvc": "^0.5.0",
+        "cruxoft/bolt-mvc": "^0.6.0",
         "ralouphie/getallheaders": "^2.0"
     },
     "require-dev": {
