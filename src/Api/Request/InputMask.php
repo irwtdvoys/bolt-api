@@ -23,9 +23,10 @@
 				"type" => $type,
 				"options" => $options
 			);
-			$this->children[] = new InputMask($structure);
 
+			$class = ($type !== null) ? $type : InputMask::class;
 
+			$this->children[] = new $class($structure);
 
 			return $this;
 		}
