@@ -19,7 +19,7 @@
 				$type .= "::" . $exception->getCodeKey();
 			}
 
-			if (DEPLOYMENT == "production")
+			if (DEPLOYMENT === Deployment::PRODUCTION)
 			{
 				$data = $type;
 			}
