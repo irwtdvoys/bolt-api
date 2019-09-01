@@ -51,5 +51,17 @@
 
 			return $this;
 		}
+		
+		public function options($data = null)
+		{
+			if ($data === null)
+			{
+				return $this->options;
+			}
+			
+			$this->options = array_merge($this->options, $data);
+			
+			return $this;
+		}
 	}
 ?>
