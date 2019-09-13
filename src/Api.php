@@ -82,9 +82,9 @@
 			}
 			elseif ($this->route->controller == "")
 			{
-				if (file_exists(ROOT_SERVER . "logs/packages.json"))
+				if (file_exists(ROOT_SERVER . "library/packages.json"))
 				{
-					$packages = Json::decode(file_get_contents(ROOT_SERVER . "logs/packages.json"));
+					$packages = Json::decode(file_get_contents(ROOT_SERVER . "library/packages.json"));
 
 					foreach ($packages as $name => $version)
 					{
