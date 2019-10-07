@@ -117,7 +117,7 @@
 			{
 				$rule = $this->whitelist[$loop];
 
-				if ($rule->controller == $this->route->controller)
+				if ("App\\Controllers\\" . $rule->controller == $this->route->controller)
 				{
 					if (!isset($rule->methods))
 					{
