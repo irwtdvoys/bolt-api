@@ -2,6 +2,8 @@
 	namespace Bolt\Api\Request;
 
 	use Bolt\Base;
+	use Bolt\Exceptions\Framework as FrameworkException;
+	use Bolt\Exceptions\Validation as ValidationException;
 	use Bolt\Json;
 
 	class Parameters extends Base
@@ -160,6 +162,28 @@
 				{
 					$result[$field] = empty($data) ? $parameters->{$field} : $this->filter($next, $parameters->{$field});
 				}
+			}
+
+			return $result;
+		}
+
+		public  function validate($mask)
+		{
+			if (is_string($mask))
+			{
+				$mask = new $mask();
+			}
+
+			if (!$mask instanceof InputMask)
+			{
+				throw new FrameworkException("Expected InputMask, got `" . gettype($mask) . "`", 500);
+			}
+
+			$result = $this->check($mask);
+
+			if ($result !== true)
+			{
+				throw new ValidationException("Missing parameter '" . $result . "'", 400);
 			}
 
 			return $result;
