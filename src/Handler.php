@@ -2,6 +2,7 @@
 	namespace Bolt;
 
 	use Bolt\Api\Response;
+	use Bolt\Exceptions\Output;
 
 	class Handler
 	{
@@ -21,7 +22,11 @@
 				$type .= "::" . $exception->getCodeKey();
 			}
 
-			if (DEPLOYMENT === Deployment::PRODUCTION)
+			if ($exception instanceof Output)
+			{
+				$data = $exception->getMessage();
+			}
+			elseif (DEPLOYMENT === Deployment::PRODUCTION)
 			{
 				$data = $type;
 			}
