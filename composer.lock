@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3600763c6dcfcaf0ab9b80118639c6da",
+    "content-hash": "e9a76f7856507d02318bc8e58a724c34",
     "packages": [
         {
             "name": "cruxoft/bolt-core",
@@ -93,16 +93,16 @@
         },
         {
             "name": "cruxoft/bolt-mvc",
-            "version": "0.6.0",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-mvc.git",
-                "reference": "0d97bb35941443fa1fa3a90a7c5db7e0f7443b0b"
+                "reference": "f90c483f467a497c1c159fe2b02d6700d9e67a9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/0d97bb35941443fa1fa3a90a7c5db7e0f7443b0b",
-                "reference": "0d97bb35941443fa1fa3a90a7c5db7e0f7443b0b",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/f90c483f467a497c1c159fe2b02d6700d9e67a9e",
+                "reference": "f90c483f467a497c1c159fe2b02d6700d9e67a9e",
                 "shasum": ""
             },
             "require": {
@@ -135,7 +135,7 @@
                 "mvc",
                 "php"
             ],
-            "time": "2019-09-01T12:02:16+00:00"
+            "time": "2019-10-10T18:16:56+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
