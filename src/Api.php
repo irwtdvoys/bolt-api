@@ -1,6 +1,7 @@
 <?php
 	namespace Bolt;
 
+	use Bolt\Http\Verbs;
 	use DateTime;
 	use DirectoryIterator;
 
@@ -34,7 +35,7 @@
 		{
 			$this->routing();
 
-			if ($this->route->info->verb == "OPTIONS")
+			if ($this->route->info->verb === Verbs::OPTIONS)
 			{
 				$this->handleOptions();
 			}
@@ -145,7 +146,7 @@
 		private function loadJsonConfig($filename)
 		{
 			$fileHandler = new Files();
-			
+
 			try
 			{
 				$json = Json::decode($fileHandler->load($filename));
@@ -160,12 +161,12 @@
 
 		public function fetchAvailableOptions()
 		{
-			$possibleMethods = array("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH");
+			$possibleVerbs = Verbs::list();
 			$available = array();
 
 			$methodTail = str_replace(strtolower($this->route->info->verb), "", $this->route->method);
 
-			foreach ($possibleMethods as $next)
+			foreach ($possibleVerbs as $next)
 			{
 				if (method_exists($this->route->controller, strtolower($next) . $methodTail) === true)
 				{
@@ -205,7 +206,7 @@
 		{
 			$controller = $this->route->controller();
 
-			if ($controller != "" && $_SERVER['REQUEST_METHOD'] != "OPTIONS")
+			if ($controller != "" && $_SERVER['REQUEST_METHOD'] != Verbs::OPTIONS)
 			{
 				if (!class_exists($controller))
 				{
