@@ -3,6 +3,7 @@
 
 	use Bolt\Api\Response;
 	use Bolt\Exceptions\Output;
+	use Bolt\Http\Codes as HttpCodes;
 
 	class Handler
 	{
@@ -22,9 +23,12 @@
 				$type .= "::" . $exception->getCodeKey();
 			}
 
+			$code = HttpCodes::INTERNAL_SERVER_ERROR;
+
 			if ($exception instanceof Output)
 			{
 				$data = $exception->getMessage();
+				$code = $exception->getCode();
 			}
 			elseif (DEPLOYMENT === Deployment::PRODUCTION)
 			{
@@ -54,7 +58,7 @@
 			else
 			{
 				$response = new Response();
-				$response->status(500, $data);
+				$response->status($code, $data);
 			}
 
 			return true;
