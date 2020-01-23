@@ -51,7 +51,7 @@
 
 			try
 			{
-				$config = Json::decode($fileHandler->load(ROOT_SERVER . "/library/routes.json"));
+				$config = Json::decode($fileHandler->load(ROOT_SERVER . "/library/config/routes.json"));
 			}
 			catch (\Bolt\Exceptions\Json $exception)
 			{
