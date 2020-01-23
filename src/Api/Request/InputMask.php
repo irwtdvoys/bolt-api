@@ -1,6 +1,8 @@
 <?php
 	namespace Bolt\Api\Request;
 
+	use Bolt\Validation\Constraint;
+	use Bolt\Validation\Constraints\Required;
 	use Bolt\Base;
 	use Bolt\Arrays;
 
@@ -8,20 +10,22 @@
 	{
 		public $name;
 		public $type;
+		/** @var InputMask[] */
 		public $children = array();
-		public $options = array();
+		/** @var Constraint[] */
+		public $constraints = array();
 
 		public function __construct($data = null)
 		{
 			parent::__construct($data);
 		}
 
-		public function add($name, $type = null, $options = array())
+		public function add($name, $type = null, $constraints = array())
 		{
 			$structure = array(
 				"name" => $name,
 				"type" => $type,
-				"options" => $options
+				"constraints" => $constraints
 			);
 
 			$class = ($type !== null) ? $type : InputMask::class;
@@ -37,30 +41,30 @@
 			{
 				if (Arrays::type($fields) === "numeric" || is_integer($key))
 				{
-					$this->add($value, null, ["required" => true]);
+					$this->add($value, null, [new Required()]);
 				}
 				else
 				{
 					$mask = new InputMask();
 					$mask->name($key);
 					$mask->inflate($value);
-					$mask->options(["required" => true]);
+					$mask->constraints([new Required()]);
 					$this->children[] = $mask;
 				}
 			}
 
 			return $this;
 		}
-		
-		public function options($data = null)
+
+		public function constraints($data = null)
 		{
 			if ($data === null)
 			{
-				return $this->options;
+				return $this->constraints;
 			}
-			
-			$this->options = array_merge($this->options, $data);
-			
+
+			$this->constraints = array_merge($this->constraints, $data);
+
 			return $this;
 		}
 	}
