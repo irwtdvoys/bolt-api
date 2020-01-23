@@ -1,7 +1,8 @@
 <?php
 	namespace Bolt;
 
-	use Bolt\Http\Verbs;
+	use Bolt\Http\Codes as HttpCodes;
+	use Bolt\Http\Verbs as HttpVerbs;
 	use DateTime;
 	use DirectoryIterator;
 
@@ -35,7 +36,7 @@
 		{
 			$this->routing();
 
-			if ($this->route->info->verb === Verbs::OPTIONS)
+			if ($this->route->info->verb === HttpVerbs::OPTIONS)
 			{
 				$this->handleOptions();
 			}
@@ -46,7 +47,7 @@
 
 			if ($whitelisted === false && (!isset($this->request->headers->authorization) || empty($this->request->headers->authorization())))
 			{
-				$this->response->status(401);
+				$this->response->status(HttpCodes::UNAUTHORIZED);
 			}
 
 			if (isset($this->request->headers->authorization) && !empty($this->request->headers->authorization()))
@@ -85,7 +86,7 @@
 			{
 				if (file_exists(ROOT_SERVER . "library/packages.json"))
 				{
-					$packages = Json::decode(file_get_contents(ROOT_SERVER . "library/packages.json"));
+					$packages = $this->loadJsonConfig(ROOT_SERVER . "library/packages.json");
 
 					foreach ($packages as $name => $version)
 					{
@@ -140,13 +141,13 @@
 
 		private function loadWhitelist()
 		{
-			$this->whitelist = $this->loadJsonConfig(ROOT_SERVER . "/library/whitelist.json");
+			$this->whitelist = $this->loadJsonConfig(ROOT_SERVER . "/library/config/whitelist.json");
 		}
 
 		private function loadJsonConfig($filename)
 		{
 			$fileHandler = new Files();
-
+			
 			try
 			{
 				$json = Json::decode($fileHandler->load($filename));
@@ -161,7 +162,7 @@
 
 		public function fetchAvailableOptions()
 		{
-			$possibleVerbs = Verbs::list();
+			$possibleVerbs = HttpVerbs::list();
 			$available = array();
 
 			$methodTail = str_replace(strtolower($this->route->info->verb), "", $this->route->method);
@@ -182,7 +183,7 @@
 			$available = $this->fetchAvailableOptions();
 			$headers[] = "Allow: " . implode(",", $available);
 			$headers[] = "Access-Control-Allow-Methods: " . implode(",", $available);
-			$this->response->status(204, null, $headers);
+			$this->response->status(HttpCodes::NO_CONTENT, null, $headers);
 		}
 
 		public function controllers()
@@ -206,11 +207,11 @@
 		{
 			$controller = $this->route->controller();
 
-			if ($controller != "" && $_SERVER['REQUEST_METHOD'] != Verbs::OPTIONS)
+			if ($controller != "" && $_SERVER['REQUEST_METHOD'] != HttpVerbs::OPTIONS)
 			{
 				if (!class_exists($controller))
 				{
-					$this->response->status(404);
+					$this->response->status(HttpCodes::NOT_FOUND);
 				}
 				elseif (!method_exists($controller, $this->route->method))
 				{
@@ -221,11 +222,11 @@
 						$available = $this->fetchAvailableOptions();
 						$headers[] = "Allow: " . implode(",", $available);
 						$headers[] = "Access-Control-Allow-Methods: " . implode(",", $available);
-						$this->response->status(405, false, $headers);
+						$this->response->status(HttpCodes::METHOD_NOT_ALLOWED, false, $headers);
 					}
 					else
 					{
-						$this->response->status(404);
+						$this->response->status(HttpCodes::NOT_FOUND);
 					}
 				}
 			}
@@ -235,14 +236,14 @@
 		{
 			if (!isset($this->request->headers->authorization))
 			{
-				$this->response->status(401);
+				$this->response->status(HttpCodes::UNAUTHORIZED);
 			}
 
 			$this->authentication->parse($this->request->headers->authorization());
 
 			if ($this->authentication->handler($this->connections()) === false)
 			{
-				$this->response->status(400, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
+				$this->response->status(HttpCodes::BAD_REQUEST, "Unknown authentication schema `" . $this->authentication->scheme() . "`");
 			}
 
 			$route = ($whitelisted === true) ? null : $this->route();

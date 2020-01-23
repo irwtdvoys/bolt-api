@@ -3,7 +3,8 @@
 
 	use Bolt\Base;
 	use Bolt\Exceptions\Framework as FrameworkException;
-	use Bolt\Exceptions\Validation as ValidationException;
+	use Bolt\Exceptions\Output as OutputException;
+	use Bolt\Http\Codes as HttpCodes;
 	use Bolt\Json;
 
 	class Parameters extends Base
@@ -167,7 +168,42 @@
 			return $result;
 		}
 
-		public  function validate($mask)
+		public function checkConstraints(InputMask $mask, $parameters)
+		{
+			$constraints = $mask->constraints();
+			$results = array();
+
+			if (count($constraints) > 0)
+			{
+				foreach ($constraints as $constraint)
+				{
+					if ($constraint->isValid($parameters) === false)
+					{
+						$results[] = $constraint->message();
+					}
+				}
+			}
+
+			$children = $mask->children();
+
+			if (!empty($children))
+			{
+				foreach ($children as $child)
+				{
+					$name = $child->name();
+					$result = $this->checkConstraints($child, $parameters->{$name});
+
+					if ($result !== array())
+					{
+						$results[$name] = $result;
+					}
+				}
+			}
+
+			return $results;
+		}
+
+		public function validate($mask)
 		{
 			if (is_string($mask))
 			{
@@ -176,14 +212,14 @@
 
 			if (!$mask instanceof InputMask)
 			{
-				throw new FrameworkException("Expected InputMask, got `" . gettype($mask) . "`", 500);
+				throw new FrameworkException("Expected InputMask, got `" . gettype($mask) . "`", HttpCodes::INTERNAL_SERVER_ERROR);
 			}
 
-			$result = $this->check($mask);
+			$result = $this->checkConstraints($mask, (object)$this->parameters());
 
-			if ($result !== true)
+			if ($result !== array())
 			{
-				throw new ValidationException("Missing parameter '" . $result . "'", 400);
+				throw new OutputException("Validation error: '" . Json::encode($result) . "'", HttpCodes::BAD_REQUEST);
 			}
 
 			return $result;

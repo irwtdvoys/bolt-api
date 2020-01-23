@@ -2,6 +2,7 @@
 	namespace Bolt\Api;
 
 	use Bolt\Http;
+	use Bolt\Http\Codes as HttpCodes;
 
 	class Response extends Http
 	{
@@ -12,7 +13,7 @@
 
 		public function __construct()
 		{
-			$this->code = 200;
+			$this->code = HttpCodes::OK;
 			$this->data = false;
 			$this->headers = new Response\Headers();
 			$this->setView("json");
@@ -29,22 +30,21 @@
 
 			$group = $this->groupLookup($this->code);
 
-			if ($this->code == 204 || $this->code == 304)
+			if ($this->code == HttpCodes::NO_CONTENT || $this->code == HttpCodes::NOT_MODIFIED)
 			{
 				$result = null;
 			}
 			elseif ($this->code >= 400 || $this->data === false)
 			{
 				$result = array(
-					$group => array(
-						"code" => $this->code,
-						"message" => $this->codeLookup($this->code)
-					)
+					"code" => $this->code,
+					"category" => $group,
+					"message" => $this->codeLookup($this->code)
 				);
 
 				if ($this->data !== false)
 				{
-					$result[$group]['data'] = $this->data;
+					$result['data'] = $this->data;
 				}
 			}
 			else
@@ -61,7 +61,7 @@
 		{
 			$this->code = $code;
 
-			if ($code == 419)
+			if ($code == HttpCodes::AUTHENTICATION_TIMEOUT)
 			{
 				$this->headers->add("HTTP/1.1 419 Authentication Timeout");
 			}
@@ -101,7 +101,7 @@
 			}
 			else
 			{
-				$this->status("500", "Unable to display requested view format");
+				$this->status(HttpCodes::INTERNAL_SERVER_ERROR, "Unable to display requested view format");
 			}
 		}
 	}
