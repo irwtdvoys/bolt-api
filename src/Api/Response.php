@@ -37,15 +37,14 @@
 			elseif ($this->code >= 400 || $this->data === false)
 			{
 				$result = array(
-					$group => array(
-						"code" => $this->code,
-						"message" => $this->codeLookup($this->code)
-					)
+					"code" => $this->code,
+					"category" => $group,
+					"message" => $this->codeLookup($this->code)
 				);
 
 				if ($this->data !== false)
 				{
-					$result[$group]['data'] = $this->data;
+					$result['data'] = $this->data;
 				}
 			}
 			else
