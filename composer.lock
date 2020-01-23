@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cruxoft/bolt-core",
-            "version": "0.8.0",
+            "version": "0.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-core.git",
-                "reference": "055ca11a2d28181c66f0858051e147f424e85974"
+                "reference": "e49baa3a8ab8616e80d14316b843296d9ebb2c14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/055ca11a2d28181c66f0858051e147f424e85974",
-                "reference": "055ca11a2d28181c66f0858051e147f424e85974",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/e49baa3a8ab8616e80d14316b843296d9ebb2c14",
+                "reference": "e49baa3a8ab8616e80d14316b843296d9ebb2c14",
                 "shasum": ""
             },
             "require": {
@@ -47,24 +47,24 @@
                 "bolt",
                 "framework"
             ],
-            "time": "2019-11-10T16:06:59+00:00"
+            "time": "2020-01-23T11:35:48+00:00"
         },
         {
             "name": "cruxoft/bolt-json",
-            "version": "0.3.1",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-json.git",
-                "reference": "9068e249e616dc1e1d5a4aa7677f8c11c8725811"
+                "reference": "be887c8162dd031923b471c5281b1c1c9816b4e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-json/zipball/9068e249e616dc1e1d5a4aa7677f8c11c8725811",
-                "reference": "9068e249e616dc1e1d5a4aa7677f8c11c8725811",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-json/zipball/be887c8162dd031923b471c5281b1c1c9816b4e6",
+                "reference": "be887c8162dd031923b471c5281b1c1c9816b4e6",
                 "shasum": ""
             },
             "require": {
-                "cruxoft/bolt-core": "^0.8.0",
+                "cruxoft/bolt-core": "^0.9.0",
                 "ext-json": "*",
                 "php": "^7"
             },
@@ -92,24 +92,24 @@
                 "bolt",
                 "json"
             ],
-            "time": "2019-11-10T16:13:59+00:00"
+            "time": "2020-01-23T11:47:19+00:00"
         },
         {
             "name": "cruxoft/bolt-mvc",
-            "version": "0.7.1",
+            "version": "0.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-mvc.git",
-                "reference": "d3d7492ec6d85231fceb6ac93628458a00c0462f"
+                "reference": "8ec669229215e017833e20a63208ab16f8e5a5ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/d3d7492ec6d85231fceb6ac93628458a00c0462f",
-                "reference": "d3d7492ec6d85231fceb6ac93628458a00c0462f",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/8ec669229215e017833e20a63208ab16f8e5a5ad",
+                "reference": "8ec669229215e017833e20a63208ab16f8e5a5ad",
                 "shasum": ""
             },
             "require": {
-                "cruxoft/bolt-core": "^0.8.0",
+                "cruxoft/bolt-core": "^0.9.0",
                 "cruxoft/bolt-json": "^0.3.0",
                 "php": "^7.2.0"
             },
@@ -119,8 +119,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bolt\\": "src/",
-                    "App\\": "app"
+                    "Bolt\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -139,7 +138,7 @@
                 "mvc",
                 "php"
             ],
-            "time": "2019-11-10T16:17:52+00:00"
+            "time": "2020-01-23T11:52:34+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
