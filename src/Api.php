@@ -1,7 +1,7 @@
 <?php
 	namespace Bolt;
 
-	use Bolt\Http\Verbs;
+	use Bolt\Http\Verbs as HttpVerbs;
 	use DateTime;
 	use DirectoryIterator;
 
@@ -35,7 +35,7 @@
 		{
 			$this->routing();
 
-			if ($this->route->info->verb === Verbs::OPTIONS)
+			if ($this->route->info->verb === HttpVerbs::OPTIONS)
 			{
 				$this->handleOptions();
 			}
@@ -161,7 +161,7 @@
 
 		public function fetchAvailableOptions()
 		{
-			$possibleVerbs = Verbs::list();
+			$possibleVerbs = HttpVerbs::list();
 			$available = array();
 
 			$methodTail = str_replace(strtolower($this->route->info->verb), "", $this->route->method);
@@ -206,7 +206,7 @@
 		{
 			$controller = $this->route->controller();
 
-			if ($controller != "" && $_SERVER['REQUEST_METHOD'] != Verbs::OPTIONS)
+			if ($controller != "" && $_SERVER['REQUEST_METHOD'] != HttpVerbs::OPTIONS)
 			{
 				if (!class_exists($controller))
 				{
