@@ -50,7 +50,7 @@
 			{
 				if (!is_string($data))
 				{
-					$data = json_encode($data, JSON_PRETTY_PRINT);
+					$data = Json::encode($data, JSON_PRETTY_PRINT);
 				}
 
 				echo($data . "\n");
