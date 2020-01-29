@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5da11c10f13644168a3d792d91f4de54",
+    "content-hash": "4a85c6aaaa46ef458e68ba346eb7e9b5",
     "packages": [
         {
             "name": "cruxoft/bolt-core",
@@ -51,16 +51,16 @@
         },
         {
             "name": "cruxoft/bolt-json",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-json.git",
-                "reference": "be887c8162dd031923b471c5281b1c1c9816b4e6"
+                "reference": "61160abbd2871d45e2e2d9965d79d873340f31aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-json/zipball/be887c8162dd031923b471c5281b1c1c9816b4e6",
-                "reference": "be887c8162dd031923b471c5281b1c1c9816b4e6",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-json/zipball/61160abbd2871d45e2e2d9965d79d873340f31aa",
+                "reference": "61160abbd2871d45e2e2d9965d79d873340f31aa",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 "bolt",
                 "json"
             ],
-            "time": "2020-01-23T11:47:19+00:00"
+            "time": "2020-01-29T16:03:57+00:00"
         },
         {
             "name": "cruxoft/bolt-mvc",
@@ -142,16 +142,16 @@
         },
         {
             "name": "cruxoft/bolt-validation",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-validation.git",
-                "reference": "a90a1d6aa181c4d5618f0c07503b09774c609de9"
+                "reference": "664cb34c0d2491bafeeb8648274eccc2b75e9d7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-validation/zipball/a90a1d6aa181c4d5618f0c07503b09774c609de9",
-                "reference": "a90a1d6aa181c4d5618f0c07503b09774c609de9",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-validation/zipball/664cb34c0d2491bafeeb8648274eccc2b75e9d7b",
+                "reference": "664cb34c0d2491bafeeb8648274eccc2b75e9d7b",
                 "shasum": ""
             },
             "require": {
@@ -182,7 +182,7 @@
                 "bolt",
                 "geojson"
             ],
-            "time": "2020-01-23T14:50:53+00:00"
+            "time": "2020-01-23T17:22:44+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
