@@ -4,6 +4,7 @@
 	use Bolt\Base;
 	use Bolt\Exceptions\Framework as FrameworkException;
 	use Bolt\Exceptions\Output as OutputException;
+	use Bolt\Exceptions\Validation;
 	use Bolt\Http\Codes as HttpCodes;
 	use Bolt\Json;
 
@@ -203,7 +204,7 @@
 			return $results;
 		}
 
-		public function validate($mask)
+		public function validate($mask, $filter = false)
 		{
 			if (is_string($mask))
 			{
@@ -219,10 +220,10 @@
 
 			if ($result !== array())
 			{
-				throw new OutputException("Validation error: '" . Json::encode($result) . "'", HttpCodes::BAD_REQUEST);
+				throw new Validation(Json::encode($result), HttpCodes::BAD_REQUEST);
 			}
 
-			return $result;
+			return ($filter === true) ? $this->filter($mask) : null;
 		}
 	}
 ?>

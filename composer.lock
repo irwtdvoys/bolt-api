@@ -4,23 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a85c6aaaa46ef458e68ba346eb7e9b5",
+    "content-hash": "a4bed48f4c1a6ff30f97dfb94c2e8302",
     "packages": [
         {
             "name": "cruxoft/bolt-core",
-            "version": "0.9.1",
+            "version": "0.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-core.git",
-                "reference": "e49baa3a8ab8616e80d14316b843296d9ebb2c14"
+                "reference": "9dc5691f062b5298c728d949fc7361614e04771b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/e49baa3a8ab8616e80d14316b843296d9ebb2c14",
-                "reference": "e49baa3a8ab8616e80d14316b843296d9ebb2c14",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-core/zipball/9dc5691f062b5298c728d949fc7361614e04771b",
+                "reference": "9dc5691f062b5298c728d949fc7361614e04771b",
                 "shasum": ""
             },
             "require": {
+                "cruxoft/bolt-support": "^0.3.0",
                 "php": "^7"
             },
             "require-dev": {
@@ -47,71 +48,30 @@
                 "bolt",
                 "framework"
             ],
-            "time": "2020-01-23T11:35:48+00:00"
-        },
-        {
-            "name": "cruxoft/bolt-json",
-            "version": "0.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/irwtdvoys/bolt-json.git",
-                "reference": "61160abbd2871d45e2e2d9965d79d873340f31aa"
+            "support": {
+                "issues": "https://github.com/irwtdvoys/bolt-core/issues",
+                "source": "https://github.com/irwtdvoys/bolt-core/tree/0.10.3"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-json/zipball/61160abbd2871d45e2e2d9965d79d873340f31aa",
-                "reference": "61160abbd2871d45e2e2d9965d79d873340f31aa",
-                "shasum": ""
-            },
-            "require": {
-                "cruxoft/bolt-core": "^0.9.0",
-                "ext-json": "*",
-                "php": "^7"
-            },
-            "require-dev": {
-                "cruxoft/dump": "^0.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Bolt\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Steve Adams",
-                    "role": "Developer"
-                }
-            ],
-            "description": "JSON wrapper library built on the Bolt Framework",
-            "keywords": [
-                "bolt",
-                "json"
-            ],
-            "time": "2020-01-29T16:03:57+00:00"
+            "time": "2020-12-05T19:55:50+00:00"
         },
         {
             "name": "cruxoft/bolt-mvc",
-            "version": "0.7.2",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irwtdvoys/bolt-mvc.git",
-                "reference": "8ec669229215e017833e20a63208ab16f8e5a5ad"
+                "reference": "01fbee54bd85a751c79fbe237109de9d0cd8b8da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/8ec669229215e017833e20a63208ab16f8e5a5ad",
-                "reference": "8ec669229215e017833e20a63208ab16f8e5a5ad",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-mvc/zipball/01fbee54bd85a751c79fbe237109de9d0cd8b8da",
+                "reference": "01fbee54bd85a751c79fbe237109de9d0cd8b8da",
                 "shasum": ""
             },
             "require": {
-                "cruxoft/bolt-core": "^0.9.0",
-                "cruxoft/bolt-json": "^0.3.0",
-                "php": "^7.2.0"
+                "cruxoft/bolt-core": "^0.10.0",
+                "ext-dom": "*",
+                "php": "^7.4"
             },
             "require-dev": {
                 "cruxoft/dump": "^0.2.2"
@@ -119,7 +79,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bolt\\": "src/"
+                    "Bolt\\": "src/",
+                    "App\\": "app/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -138,25 +99,77 @@
                 "mvc",
                 "php"
             ],
-            "time": "2020-01-23T11:52:34+00:00"
+            "support": {
+                "issues": "https://github.com/irwtdvoys/bolt-mvc/issues",
+                "source": "https://github.com/irwtdvoys/bolt-mvc/tree/0.8.0"
+            },
+            "time": "2020-12-05T21:50:00+00:00"
         },
         {
-            "name": "cruxoft/bolt-validation",
-            "version": "0.1.1",
+            "name": "cruxoft/bolt-support",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/irwtdvoys/bolt-validation.git",
-                "reference": "664cb34c0d2491bafeeb8648274eccc2b75e9d7b"
+                "url": "https://github.com/irwtdvoys/bolt-support.git",
+                "reference": "7703d52ec6a282b3a6f9f909ef08aa6ea9d94195"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irwtdvoys/bolt-validation/zipball/664cb34c0d2491bafeeb8648274eccc2b75e9d7b",
-                "reference": "664cb34c0d2491bafeeb8648274eccc2b75e9d7b",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-support/zipball/7703d52ec6a282b3a6f9f909ef08aa6ea9d94195",
+                "reference": "7703d52ec6a282b3a6f9f909ef08aa6ea9d94195",
                 "shasum": ""
             },
             "require": {
-                "cruxoft/bolt-core": "^0.9.0",
-                "php": "^7.1"
+                "ext-json": "*",
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "cruxoft/dump": "^0.2",
+                "phpunit/phpunit": "^9.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bolt\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Steve Adams",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Standalone support library for the Bolt Framework",
+            "keywords": [
+                "bolt"
+            ],
+            "support": {
+                "issues": "https://github.com/irwtdvoys/bolt-support/issues",
+                "source": "https://github.com/irwtdvoys/bolt-support/tree/0.3.0"
+            },
+            "time": "2020-11-11T22:31:16+00:00"
+        },
+        {
+            "name": "cruxoft/bolt-validation",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/irwtdvoys/bolt-validation.git",
+                "reference": "79f4822a15938c700a2cee155eaff6f61d1fb8aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/irwtdvoys/bolt-validation/zipball/79f4822a15938c700a2cee155eaff6f61d1fb8aa",
+                "reference": "79f4822a15938c700a2cee155eaff6f61d1fb8aa",
+                "shasum": ""
+            },
+            "require": {
+                "cruxoft/bolt-core": "^0.10.0",
+                "php": "^7.4"
             },
             "require-dev": {
                 "cruxoft/dump": "^0.2.2"
@@ -182,7 +195,11 @@
                 "bolt",
                 "geojson"
             ],
-            "time": "2020-01-23T17:22:44+00:00"
+            "support": {
+                "issues": "https://github.com/irwtdvoys/bolt-validation/issues",
+                "source": "https://github.com/irwtdvoys/bolt-validation/tree/0.3.0"
+            },
+            "time": "2020-12-05T22:17:36+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -222,6 +239,10 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
+            "support": {
+                "issues": "https://github.com/ralouphie/getallheaders/issues",
+                "source": "https://github.com/ralouphie/getallheaders/tree/2.0.5"
+            },
             "time": "2016-02-11T07:05:27+00:00"
         }
     ],
@@ -263,6 +284,10 @@
                 }
             ],
             "description": "A system for generating structure information about nested variables for use including screen display",
+            "support": {
+                "issues": "https://github.com/irwtdvoys/dump/issues",
+                "source": "https://github.com/irwtdvoys/dump/tree/master"
+            },
             "time": "2018-03-14T14:14:53+00:00"
         }
     ],
@@ -271,8 +296,7 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "ext-json": "*"
-    },
-    "platform-dev": []
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
