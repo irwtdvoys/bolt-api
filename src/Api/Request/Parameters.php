@@ -192,7 +192,7 @@
 				foreach ($children as $child)
 				{
 					$name = $child->name();
-					$result = $this->checkConstraints($child, $parameters->{$name});
+					$result = $this->checkConstraints($child, $parameters->$name ?? null);
 
 					if ($result !== array())
 					{
