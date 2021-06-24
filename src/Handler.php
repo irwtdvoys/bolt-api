@@ -3,6 +3,7 @@
 
 	use Bolt\Api\Response;
 	use Bolt\Exceptions\Output;
+	use Bolt\Exceptions\Validation;
 	use Bolt\Http\Codes as HttpCodes;
 
 	class Handler
@@ -29,6 +30,11 @@
 			{
 				$data = $exception->getMessage();
 				$code = $exception->getCode();
+			}
+			elseif ($exception instanceof Validation)
+			{
+				$data = Json::decode($exception->getMessage());
+				$code = HttpCodes::BAD_REQUEST;
 			}
 			elseif (DEPLOYMENT === Deployment::PRODUCTION)
 			{

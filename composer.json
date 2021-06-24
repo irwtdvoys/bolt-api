@@ -15,10 +15,8 @@
         }
     ],
     "require": {
-        "ext-json": "*",
-        "cruxoft/bolt-json": "^0.3.3",
-        "cruxoft/bolt-mvc": "^0.7.0",
-        "cruxoft/bolt-validation": "^0.1.0",
+        "cruxoft/bolt-mvc": "^0.8.0",
+        "cruxoft/bolt-validation": "^0.3.0",
         "ralouphie/getallheaders": "^2.0"
     },
     "require-dev": {
