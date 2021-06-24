@@ -8,7 +8,7 @@
 
 	class Handler
 	{
-		public static function error($level, $message, $file, $line, $context)
+		public static function error($level, $message, $file = null, $line = null, $context = null)
 		{
 			throw new Exceptions\Error($message, 0, $level, $file, $line);
 		}
